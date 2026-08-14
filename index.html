@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张琳 - 作品集</title>
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1d1d1f;
+            --white: #f5f5f7;
+            --gray: #86868b;
+            --light-gray: #d2d2d7;
+            --bg: #000000;
+            --card-bg: #1d1d1f;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', sans-serif;
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 50px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 50px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .hero-desc {
+            font-size: 17px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--light-gray);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--gray);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--white);
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 5vw, 56px);
+            text-align: center;
+            margin-bottom: 80px;
+            font-weight: 700;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--gray), transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 30px);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: calc(50% + 30px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--black);
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            max-width: 350px;
+        }
+
+        .timeline-year {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 14px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-desc {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .card-desc {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border-radius: 20px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-gallery {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item {
+            min-width: 100%;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .gallery-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 5;
+            transition: background 0.3s;
+        }
+
+        .gallery-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .gallery-prev {
+            left: 15px;
+        }
+
+        .gallery-next {
+            right: 15px;
+        }
+
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+        }
+
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gray);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .gallery-dot.active {
+            background: var(--white);
+        }
+
+        .modal-info {
+            padding: 30px;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .modal-desc {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .meta-value {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Contact */
+        .contact-section {
+            padding: 100px 50px;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .contact-label {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .contact-value {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 48px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 120px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .timeline-section {
+                padding: 60px 20px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 50px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                width: 95%;
+                margin: 20px;
+            }
+
+            .gallery-item img {
+                height: 250px;
+            }
+
+            .contact-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">张琳</a>
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#photography">摄影</a>
+            <a href="#video">视频</a>
+            <a href="#ads">广告</a>
+            <a href="#planning">策划</a>
+            <a href="#wechat">公众号</a>
+            <a href="#contact">联系</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <img src="images/avatar.jpg" alt="张琳" class="hero-avatar">
+            <h1>张琳</h1>
+            <p class="hero-subtitle">厦门大学 · 新闻传播学 · 广播电视</p>
+            <p class="hero-desc">
+                具备从策划、拍摄到后期剪辑的全流程内容生产能力。
+                擅长通过数据分析优化传播策略，积极探索 AIGC 工具在内容创作中的应用。
+                我相信创意 + 数据 + 技术，能创造更有影响力的作品。
+            </p>
+            <div class="hero-cta">
+                <a href="#photography" class="btn btn-primary">查看作品</a>
+                <a href="#contact" class="btn btn-secondary">联系我</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <h2 class="section-title fade-in">成长路径</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2023 - 至今</div>
+                    <div class="timeline-title">厦门大学</div>
+                    <div class="timeline-desc">新闻传播学-广播电视专业本科，GPA 3.9/4.0（专业前5%）</div>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-title">专业竞赛突破</div>
+                    <div class="timeline-desc">获得大广赛平面广告三等奖、上海国际大学生广告节优胜奖</div>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-title">瑞幸咖啡实习</div>
+                    <div class="timeline-desc">主导第七届技能大赛全系列视频，参与全案宣发策划</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section id="photography" class="section">
+        <div class="section-header fade-in">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">摄影作品</h2>
+            <p class="section-desc">用镜头捕捉瞬间，用光影讲述故事。每一张照片都是一次与世界的对话。</p>
+        </div>
+        <div class="card-grid">
+            <div class="card fade-in" onclick="openModal('photography', 0)">
+                <img src="images/photography/photo1.jpg" alt="建筑摄影" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">城市建筑</h3>
+                    <p class="card-desc">古典与现代交融的城市建筑景观，仰拍视角展现建筑的巍峨感，通过光影、色彩的对比，营造出时空交错的视觉美感。</p>
+                    <div class="card-tags">
+                        <span class="tag">建筑</span>
+                        <span class="tag">城市</span>
+                        <span class="tag">光影</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card fade-in" onclick="openModal('photography', 1)">
+                <img src="images/photography/photo2.jpg" alt="人文摄影" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">人文纪实</h3>
+                    <p class="card-desc">捕捉生活中的真实瞬间，记录人们的情感与故事。用镜头探索人与环境的关系，展现生活的温度。</p>
+                    <div class="card-tags">
+                        <span class="tag">人文</span>
+                        <span class="tag">纪实</span>
+                        <span class="tag">故事</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card fade-in" onclick="openModal('photography', 2)">
+                <img src="images/photography/photo3.jpg" alt="风光摄影" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">风光自然</h3>
+                    <p class="card-desc">大自然的壮丽与细腻，用镜头定格天空、山水、光影的瞬间变化，展现自然之美的无限可能。</p>
+                    <div class="card-tags">
+                        <span class="tag">风光</span>
+                        <span class="tag">自然</span>
+                        <span class="tag">色彩</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="section">
+        <div class="section-header fade-in">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">视频作品</h2>
+            <p class="section-desc">用动态画面讲述故事，用节奏传递情感。从创意构思到剪辑成片，全程把控。</p>
+        </div>
+        <div class="card-grid">
+            <div class="card fade-in" onclick="openModal('video', 0)">
+                <img src="images/video/video1.jpg" alt="布洛芬广告" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">上广节—布洛芬止痛药广告</h3>
+                    <p class="card-desc">参加上海国际大学生广告节荣获"优胜奖"。基于产品定位与目标人群洞察，打磨脚本结构、镜头语言与情绪递进，完成从创意构思到剪辑成片的全流程。</p>
+                    <div class="card-tags">
+                        <span class="tag">广告</span>
+                        <span class="tag">获奖</span>
+                        <span class="tag">剪辑</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card fade-in" onclick="openModal('video', 1)">
+                <img src="images/video/video2.jpg" alt="厦门声音" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">厦门的声音 · 篮球赛事</h3>
+                    <p class="card-desc">记录厦门城市的声音与篮球赛事的激情，通过声音与画面的结合，展现城市的活力与运动的魅力。</p>
+                    <div class="card-tags">
+                        <span class="tag">纪录片</span>
+                        <span class="tag">城市</span>
+                        <span class="tag">体育</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ads Section -->
+    <section id="ads" class="section">
+        <div class="section-header fade-in">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">平面广告</h2>
+            <p class="section-desc">用视觉语言传达品牌信息，用创意设计打动目标受众。</p>
+        </div>
+        <div class="card-grid">
+            <div class="card fade-in" onclick="openModal('ads', 0)">
+                <img src="images/ads/ad1.jpg" alt="赤尾避孕套广告" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">赤尾避孕套平面广告</h3>
+                    <p class="card-desc">为赤尾品牌设计的平面广告作品，通过简洁有力的视觉语言，传达品牌的核心价值与产品特点。</p>
+                    <div class="card-tags">
+                        <span class="tag">平面设计</span>
+                        <span class="tag">品牌</span>
+                        <span class="tag">创意</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planning Section -->
+    <section id="planning" class="section">
+        <div class="section-header fade-in">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">策划案</h2>
+            <p class="section-desc">从市场调研到创意策划，从方案设计到落地执行，用策略思维推动创意实现。</p>
+        </div>
+        <div class="card-grid">
+            <div class="card fade-in" onclick="openModal('planning', 0)">
+                <img src="images/planning/plan1.jpg" alt="郁美净策划案" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">学院奖—郁美净策划案</h3>
+                    <p class="card-desc">参与品牌策划案创作，围绕品牌定位与目标人群，将零散创意整合为逻辑清晰的策划主线，推动方案从想法转为可执行结构。</p>
+                    <div class="card-tags">
+                        <span class="tag">品牌策划</span>
+                        <span class="tag">学院奖</span>
+                        <span class="tag">创意</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card fade-in" onclick="openModal('planning', 1)">
+                <img src="images/planning/plan2.jpg" alt="威力声策划案" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">威力声—线上营销策划方案</h3>
+                    <p class="card-desc">主导商用客户角色调研，解构核心人群的决策逻辑，确立"品类教育优先于品牌推广"的内容策略，搭建小红书、抖音商用音频选题库。</p>
+                    <div class="card-tags">
+                        <span class="tag">营销策划</span>
+                        <span class="tag">社交媒体</span>
+                        <span class="tag">数据分析</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card fade-in" onclick="openModal('planning', 2)">
+                <img src="images/planning/plan3.jpg" alt="威力声事件营销" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">威力声—事件营销案例</h3>
+                    <p class="card-desc">独立策划"氛围歌单"系列营销活动，覆盖咖啡厅、餐饮店等4+商业场景，设计软性口播植入与私域引流链路，输出《商用歌单运营SOP》。</p>
+                    <div class="card-tags">
+                        <span class="tag">事件营销</span>
+                        <span class="tag">活动策划</span>
+                        <span class="tag">SOP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WeChat Section -->
+    <section id="wechat" class="section">
+        <div class="section-header fade-in">
+            <div class="section-label">Portfolio</div>
+            <h2 class="section-title">公众号</h2>
+            <p class="section-desc">用文字传递价值，用排版提升阅读体验。在厦大广播电台积累的公众号运营经验。</p>
+        </div>
+        <div class="card-grid">
+            <div class="card fade-in" onclick="openModal('wechat', 0)">
+                <img src="images/wechat/wechat1.jpg" alt="公众号作品" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">公众号运营作品</h3>
+                    <p class="card-desc">在厦大广播电台宣传部期间，优化排版体系，拆解优质公众号的排版逻辑，在秀米搭建个人组件库，使3篇推文被校团委转载，单篇最高阅读量5000+。</p>
+                    <div class="card-tags">
+                        <span class="tag">公众号</span>
+                        <span class="tag">排版</span>
+                        <span class="tag">运营</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title fade-in">联系方式</h2>
+        <div class="contact-grid fade-in">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div class="contact-label">邮箱</div>
+                <div class="contact-value">18159889651@163.com</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div class="contact-label">电话</div>
+                <div class="contact-value">181-5988-9651</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">💬</div>
+                <div class="contact-label">微信</div>
+                <div class="contact-value">Z-LIN_0604</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 张琳 · 厦门大学 · 新闻传播学</p>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-gallery">
+                <div class="gallery-container" id="galleryContainer">
+                    <!-- Gallery items will be inserted here -->
+                </div>
+                <button class="gallery-btn gallery-prev" onclick="prevSlide()">‹</button>
+                <button class="gallery-btn gallery-next" onclick="nextSlide()">›</button>
+                <div class="gallery-dots" id="galleryDots">
+                    <!-- Dots will be inserted here -->
+                </div>
+            </div>
+            <div class="modal-info">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="modal-meta" id="modalMeta">
+                    <!-- Meta info will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data for modals
+        const portfolioData = {
+            photography: [
+                {
+                    title: '城市建筑',
+                    desc: '古典与现代交融的城市建筑景观，仰拍视角展现建筑的巍峨感。画面主体是一栋暖色调（米黄/金棕）的古典风格建筑，阳光柔和地洒在墙面上，光影交织凸显出建筑的厚重与精致。背景矗立着现代感十足的摩天高楼，与古典建筑形成强烈对比，营造出一种"古今对话"的浪漫氛围。',
+                    images: ['images/photography/photo1.jpg'],
+                    meta: {
+                        '类型': '建筑摄影',
+                        '地点': '城市街头',
+                        '设备': '专业相机',
+                        '后期': 'Lightroom'
+                    }
+                },
+                {
+                    title: '人文纪实',
+                    desc: '捕捉生活中的真实瞬间，记录人们的情感与故事。用镜头探索人与环境的关系，展现生活的温度。每一张照片都承载着一个独特的故事，等待被发现和分享。',
+                    images: ['images/photography/photo2.jpg'],
+                    meta: {
+                        '类型': '人文摄影',
+                        '风格': '纪实',
+                        '主题': '生活瞬间',
+                        '情感': '温暖真实'
+                    }
+                },
+                {
+                    title: '风光自然',
+                    desc: '大自然的壮丽与细腻，用镜头定格天空、山水、光影的瞬间变化。展现自然之美的无限可能，让人感受到大自然的鬼斧神工和无穷魅力。',
+                    images: ['images/photography/photo3.jpg'],
+                    meta: {
+                        '类型': '风光摄影',
+                        '主题': '自然之美',
+                        '色彩': '丰富层次',
+                        '氛围': '宁静壮美'
+                    }
+                }
+            ],
+            video: [
+                {
+                    title: '上广节—布洛芬止痛药广告',
+                    desc: '参加上海国际大学生广告节荣获"优胜奖"。本人协助团队完成从创意构思到剪辑成片的全流程。基于布洛芬产品定位与目标人群洞察，打磨脚本结构、镜头语言与情绪递进，完成分镜方案设计。强化叙事节奏与情感表达，精准匹配画面逻辑，通过转场与节奏递进情感；同步完成基础音效适配。',
+                    images: ['images/video/video1.jpg'],
+                    meta: {
+                        '类型': '视频广告',
+                        '奖项': '上广节优胜奖',
+                        '时长': '60秒',
+                        '职责': '剪辑+创意'
+                    }
+                },
+                {
+                    title: '厦门的声音 · 篮球赛事',
+                    desc: '记录厦门城市的声音与篮球赛事的激情，通过声音与画面的结合，展现城市的活力与运动的魅力。用镜头捕捉赛场上的每一个精彩瞬间，用声音传递运动的激情与城市的脉搏。',
+                    images: ['images/video/video2.jpg'],
+                    meta: {
+                        '类型': '纪录片',
+                        '主题': '城市+体育',
+                        '风格': '纪实',
+                        '元素': '声音+画面'
+                    }
+                }
+            ],
+            ads: [
+                {
+                    title: '赤尾避孕套平面广告',
+                    desc: '为赤尾品牌设计的平面广告作品，通过简洁有力的视觉语言，传达品牌的核心价值与产品特点。在设计中注重色彩搭配与构图平衡，力求在有限的画面空间内传递最有效的品牌信息。',
+                    images: ['images/ads/ad1.jpg'],
+                    meta: {
+                        '类型': '平面广告',
+                        '品牌': '赤尾',
+                        '风格': '简洁现代',
+                        '工具': 'PS/AI'
+                    }
+                }
+            ],
+            planning: [
+                {
+                    title: '学院奖—郁美净策划案',
+                    desc: '参与品牌策划案创作，协助团队完成创意构思至方案落地全流程，依托市场调研保障策划方向贴合品牌。主导创意方向：围绕品牌定位与目标人群，将零散创意整合为逻辑清晰的策划主线，推动方案从想法转为可执行结构。配合团队完成各种调研工作，将数据转化为创意方向依据，确保策划案有品牌辨识度。',
+                    images: ['images/planning/plan1.jpg'],
+                    meta: {
+                        '类型': '品牌策划',
+                        '赛事': '学院奖',
+                        '品牌': '郁美净',
+                        '职责': '创意策划'
+                    }
+                },
+                {
+                    title: '威力声—线上营销策划方案',
+                    desc: '主导商用客户角色调研，解构核心人群的决策逻辑，确立"品类教育优先于品牌推广"的内容策略。协同搭建小红书、抖音商用音频选题库，跟踪内容数据与用户反馈，输出数据分析报告并迭代创意方向，有效提升互动率。',
+                    images: ['images/planning/plan2.jpg'],
+                    meta: {
+                        '类型': '营销策划',
+                        '品牌': '威力声',
+                        '平台': '小红书+抖音',
+                        '策略': '品类教育'
+                    }
+                },
+                {
+                    title: '威力声—事件营销案例',
+                    desc: '独立策划"氛围歌单"系列营销活动，覆盖咖啡厅、餐饮店等4+商业场景，设计软性口播植入与"扫码获取同款歌单"私域引流链路，输出《商用歌单运营SOP》。通过场景化营销，将产品与消费者的生活场景深度绑定，提升品牌认知与用户粘性。',
+                    images: ['images/planning/plan3.jpg'],
+                    meta: {
+                        '类型': '事件营销',
+                        '品牌': '威力声',
+                        '场景': '4+商业场景',
+                        '产出': '运营SOP'
+                    }
+                }
+            ],
+            wechat: [
+                {
+                    title: '公众号运营作品',
+                    desc: '在厦大广播电台宣传部期间，优化排版体系，拆解优质公众号的排版逻辑，在秀米搭建个人组件库，使3篇推文被校团委转载，单篇最高阅读量5000+。构建稿件质量提升闭环，积累真实素材形成"写稿—反馈—修改"闭环，半年内稿件修改次数从平均3轮降至1轮。系统学习AU课程，将单期15分钟音频的修音时间从2小时压缩至40分钟。',
+                    images: ['images/wechat/wechat1.jpg'],
+                    meta: {
+                        '类型': '公众号运营',
+                        '平台': '微信公众号',
+                        '成就': '3篇被转载',
+                        '阅读量': '5000+'
+                    }
+                }
+            ]
+        };
+
+        let currentCategory = '';
+        let currentIndex = 0;
+        let currentSlide = 0;
+
+        // Navigation toggle
+        function toggleNav() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Modal functions
+        function openModal(category, index) {
+            currentCategory = category;
+            currentIndex = index;
+            currentSlide = 0;
+
+            const data = portfolioData[category][index];
+            const overlay = document.getElementById('modalOverlay');
+            const container = document.getElementById('galleryContainer');
+            const dots = document.getElementById('galleryDots');
+            const title = document.getElementById('modalTitle');
+            const desc = document.getElementById('modalDesc');
+            const meta = document.getElementById('modalMeta');
+
+            // Set content
+            title.textContent = data.title;
+            desc.textContent = data.desc;
+
+            // Build gallery
+            container.innerHTML = data.images.map(img => `
+                <div class="gallery-item">
+                    <img src="${img}" alt="${data.title}">
+                </div>
+            `).join('');
+
+            // Build dots
+            dots.innerHTML = data.images.map((_, i) => `
+                <div class="gallery-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></div>
+            `).join('');
+
+            // Build meta
+            meta.innerHTML = Object.entries(data.meta).map(([label, value]) => `
+                <div class="meta-item">
+                    <span class="meta-label">${label}</span>
+                    <span class="meta-value">${value}</span>
+                </div>
+            `).join('');
+
+            // Show modal
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateGallery();
+        }
+
+        function prevSlide() {
+            const data = portfolioData[currentCategory][currentIndex];
+            currentSlide = (currentSlide - 1 + data.images.length) % data.images.length;
+            updateGallery();
+        }
+
+        function nextSlide() {
+            const data = portfolioData[currentCategory][currentIndex];
+            currentSlide = (currentSlide + 1) % data.images.length;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            const container = document.getElementById('galleryContainer');
+            const dots = document.querySelectorAll('.gallery-dot');
+
+            container.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile nav
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
