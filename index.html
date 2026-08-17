@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>张琳 - 作品集</title>
     <style>
-        /* Reset & Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --black: #1d1d1f;
             --white: #f5f5f7;
@@ -20,11 +14,7 @@
             --bg: #000000;
             --card-bg: #1d1d1f;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', sans-serif;
             background: var(--bg);
@@ -32,628 +22,223 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
+        h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.02em; }
 
         /* Navigation */
         .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0 50px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 0 50px; height: 48px;
+            display: flex; align-items: center; justify-content: space-between;
         }
-
-        .nav-logo {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--white);
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 24px;
-            cursor: pointer;
-        }
+        .nav-logo { font-size: 18px; font-weight: 600; color: var(--white); text-decoration: none; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--gray); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--white); }
+        .nav-toggle { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 50px 80px;
-            position: relative;
-            overflow: hidden;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 120px 50px 80px; position: relative; overflow: hidden;
         }
-
-        .hero-content {
-            max-width: 800px;
-            z-index: 2;
-        }
-
+        .hero-content { max-width: 800px; z-index: 2; }
         .hero-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 30px;
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            margin-bottom: 30px; border: 3px solid rgba(255,255,255,0.2);
         }
-
         .hero h1 {
-            font-size: clamp(48px, 8vw, 80px);
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-size: clamp(48px, 8vw, 80px); font-weight: 700; margin-bottom: 20px;
             background: linear-gradient(135deg, #fff 0%, #86868b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .hero-subtitle {
-            font-size: clamp(18px, 3vw, 24px);
-            color: var(--gray);
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .hero-desc {
-            font-size: 17px;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            gap: 20px;
-        }
-
+        .hero-subtitle { font-size: clamp(18px, 3vw, 24px); color: var(--gray); margin-bottom: 15px; font-weight: 400; }
+        .hero-desc { font-size: 17px; color: var(--gray); max-width: 600px; margin: 0 auto 40px; line-height: 1.8; }
+        .hero-cta { display: inline-flex; gap: 20px; }
         .btn {
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-size: 15px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
+            padding: 12px 28px; border-radius: 50px; font-size: 15px; font-weight: 500;
+            text-decoration: none; transition: all 0.3s; cursor: pointer;
         }
-
-        .btn-primary {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .btn-primary:hover {
-            background: var(--light-gray);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid var(--gray);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--white);
-        }
+        .btn-primary { background: var(--white); color: var(--black); }
+        .btn-primary:hover { background: var(--light-gray); }
+        .btn-secondary { background: transparent; color: var(--white); border: 1px solid var(--gray); }
+        .btn-secondary:hover { border-color: var(--white); }
 
         /* Timeline */
-        .timeline-section {
-            padding: 100px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(36px, 5vw, 56px);
-            text-align: center;
-            margin-bottom: 80px;
-            font-weight: 700;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
+        .timeline-section { padding: 100px 50px; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: clamp(36px, 5vw, 56px); text-align: center; margin-bottom: 80px; font-weight: 700; }
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
         .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--gray), transparent);
+            content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+            width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--gray), transparent);
         }
-
         .timeline-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: calc(50% + 30px);
-            margin-bottom: 50px;
-            position: relative;
+            display: flex; justify-content: flex-end; padding-right: calc(50% + 30px);
+            margin-bottom: 50px; position: relative;
         }
-
-        .timeline-item:nth-child(even) {
-            justify-content: flex-start;
-            padding-right: 0;
-            padding-left: calc(50% + 30px);
-        }
-
+        .timeline-item:nth-child(even) { justify-content: flex-start; padding-right: 0; padding-left: calc(50% + 30px); }
         .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--white);
-            border: 3px solid var(--black);
-            z-index: 2;
+            position: absolute; left: 50%; transform: translateX(-50%);
+            width: 16px; height: 16px; border-radius: 50%;
+            background: var(--white); border: 3px solid var(--black); z-index: 2;
         }
-
-        .timeline-content {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 16px;
-            max-width: 350px;
-        }
-
-        .timeline-year {
-            font-size: 14px;
-            color: var(--gray);
-            margin-bottom: 8px;
-        }
-
-        .timeline-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .timeline-desc {
-            font-size: 15px;
-            color: var(--gray);
-            line-height: 1.6;
-        }
+        .timeline-content { background: var(--card-bg); padding: 25px; border-radius: 16px; max-width: 350px; }
+        .timeline-year { font-size: 14px; color: var(--gray); margin-bottom: 8px; }
+        .timeline-title { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+        .timeline-desc { font-size: 15px; color: var(--gray); line-height: 1.6; }
 
         /* Sections */
-        .section {
-            padding: 100px 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .section { padding: 100px 50px; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-label { font-size: 14px; color: var(--gray); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+        .section-title { font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 20px; }
+        .section-desc { font-size: 18px; color: var(--gray); max-width: 600px; margin: 0 auto; line-height: 1.8; }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-label {
-            font-size: 14px;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .section-title {
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .section-desc {
-            font-size: 18px;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
+        /* Photography Sub-categories */
+        .photo-category { margin-bottom: 80px; }
+        .photo-category-title {
+            font-size: 28px; font-weight: 600; margin-bottom: 30px;
+            padding-left: 20px; border-left: 4px solid var(--white);
         }
 
         /* Card Grid */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
         .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--card-bg); border-radius: 20px; overflow: hidden;
+            cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
         }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .card-image { width: 100%; height: 250px; object-fit: cover; }
+        .card-content { padding: 25px; }
+        .card-title { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
+        .card-desc { font-size: 15px; color: var(--gray); line-height: 1.6; margin-bottom: 15px; }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { padding: 6px 14px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 13px; color: var(--gray); }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        /* Card Carousel (swipeable images in card) */
+        .card-carousel { position: relative; overflow: hidden; }
+        .card-carousel-track { display: flex; transition: transform 0.3s ease; }
+        .card-carousel-slide { min-width: 100%; }
+        .card-carousel-slide img { width: 100%; height: 250px; object-fit: cover; display: block; }
+        .card-carousel-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.5); border: none; color: white;
+            width: 36px; height: 36px; border-radius: 50%; font-size: 18px;
+            cursor: pointer; z-index: 5; opacity: 0; transition: opacity 0.3s;
         }
-
-        .card-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
+        .card:hover .card-carousel-btn { opacity: 1; }
+        .card-carousel-btn:hover { background: rgba(0,0,0,0.8); }
+        .card-carousel-prev { left: 10px; }
+        .card-carousel-next { right: 10px; }
+        .card-carousel-dots {
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 6px;
         }
-
-        .card-content {
-            padding: 25px;
+        .card-carousel-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.4); cursor: pointer; transition: background 0.3s;
         }
-
-        .card-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .card-desc {
-            font-size: 15px;
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tag {
-            padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            font-size: 13px;
-            color: var(--gray);
+        .card-carousel-dot.active { background: white; }
+        .card-carousel-counter {
+            position: absolute; top: 10px; right: 10px;
+            background: rgba(0,0,0,0.6); color: white; padding: 4px 10px;
+            border-radius: 12px; font-size: 12px;
         }
 
         /* Modal */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.9); z-index: 2000; display: none;
+            align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s;
         }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
+        .modal-overlay.active { display: flex; opacity: 1; }
         .modal {
-            background: var(--card-bg);
-            border-radius: 20px;
-            max-width: 900px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
+            background: var(--card-bg); border-radius: 20px;
+            max-width: 900px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative;
         }
-
         .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 10;
-            transition: background 0.3s;
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(255,255,255,0.1); border: none; color: var(--white);
+            width: 40px; height: 40px; border-radius: 50%; font-size: 20px; cursor: pointer;
+            z-index: 10; transition: background 0.3s;
         }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .modal-gallery {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-container {
-            display: flex;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item {
-            min-width: 100%;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
+        .modal-close:hover { background: rgba(255,255,255,0.2); }
+        .modal-gallery { position: relative; overflow: hidden; }
+        .gallery-container { display: flex; transition: transform 0.3s ease; }
+        .gallery-item { min-width: 100%; }
+        .gallery-item img { width: 100%; height: 400px; object-fit: cover; }
         .gallery-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 5;
-            transition: background 0.3s;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.5); border: none; color: white;
+            width: 50px; height: 50px; border-radius: 50%; font-size: 24px;
+            cursor: pointer; z-index: 5; transition: background 0.3s;
         }
-
-        .gallery-btn:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .gallery-prev {
-            left: 15px;
-        }
-
-        .gallery-next {
-            right: 15px;
-        }
-
-        .gallery-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            padding: 15px;
-        }
-
+        .gallery-btn:hover { background: rgba(0,0,0,0.8); }
+        .gallery-prev { left: 15px; }
+        .gallery-next { right: 15px; }
+        .gallery-dots { display: flex; justify-content: center; gap: 10px; padding: 15px; }
         .gallery-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--gray);
-            cursor: pointer;
-            transition: background 0.3s;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--gray); cursor: pointer; transition: background 0.3s;
         }
-
-        .gallery-dot.active {
-            background: var(--white);
-        }
-
-        .modal-info {
-            padding: 30px;
-        }
-
-        .modal-title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .modal-desc {
-            font-size: 16px;
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
+        .gallery-dot.active { background: var(--white); }
+        .modal-info { padding: 30px; }
+        .modal-title { font-size: 28px; font-weight: 600; margin-bottom: 15px; }
+        .modal-desc { font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
         .modal-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; flex-wrap: wrap; gap: 20px;
+            padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
         }
+        .meta-item { display: flex; flex-direction: column; }
+        .meta-label { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .meta-value { font-size: 15px; font-weight: 500; }
 
-        .meta-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .meta-label {
-            font-size: 12px;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .meta-value {
-            font-size: 15px;
-            font-weight: 500;
-        }
+        /* Video embed */
+        .video-embed { position: relative; width: 100%; padding-bottom: 56.25%; margin-top: 15px; border-radius: 12px; overflow: hidden; }
+        .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         /* Contact */
-        .contact-section {
-            padding: 100px 50px;
-            text-align: center;
-        }
-
-        .contact-grid {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .contact-section { padding: 100px 50px; text-align: center; }
+        .contact-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 50px; }
+        .contact-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
         .contact-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 10px;
+            width: 60px; height: 60px; border-radius: 50%; background: var(--card-bg);
+            display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 10px;
         }
-
-        .contact-label {
-            font-size: 13px;
-            color: var(--gray);
-        }
-
-        .contact-value {
-            font-size: 16px;
-            font-weight: 500;
-        }
+        .contact-label { font-size: 13px; color: var(--gray); }
+        .contact-value { font-size: 16px; font-weight: 500; }
 
         /* Footer */
-        .footer {
-            padding: 40px 50px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer p {
-            font-size: 14px;
-            color: var(--gray);
-        }
+        .footer { padding: 40px 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer p { font-size: 14px; color: var(--gray); }
 
         /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav {
-                padding: 0 20px;
-            }
-
+            .nav { padding: 0 20px; }
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 48px;
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.95);
-                flex-direction: column;
-                padding: 20px;
-                gap: 15px;
+                display: none; position: absolute; top: 48px; left: 0; right: 0;
+                background: rgba(0,0,0,0.95); flex-direction: column; padding: 20px; gap: 15px;
             }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-
-            .hero {
-                padding: 120px 20px 60px;
-            }
-
-            .hero h1 {
-                font-size: 40px;
-            }
-
-            .section {
-                padding: 60px 20px;
-            }
-
-            .timeline-section {
-                padding: 60px 20px;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                padding-left: 50px;
-                padding-right: 0;
-                justify-content: flex-start;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
-
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal {
-                width: 95%;
-                margin: 20px;
-            }
-
-            .gallery-item img {
-                height: 250px;
-            }
-
-            .contact-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                gap: 15px;
-            }
+            .nav-links.active { display: flex; }
+            .nav-toggle { display: block; }
+            .hero { padding: 120px 20px 60px; }
+            .hero h1 { font-size: 40px; }
+            .section { padding: 60px 20px; }
+            .timeline-section { padding: 60px 20px; }
+            .timeline::before { left: 20px; }
+            .timeline-item, .timeline-item:nth-child(even) { padding-left: 50px; padding-right: 0; justify-content: flex-start; }
+            .timeline-dot { left: 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .modal { width: 95%; margin: 20px; }
+            .gallery-item img { height: 250px; }
+            .contact-grid { flex-direction: column; align-items: center; }
+            .hero-cta { flex-direction: column; gap: 15px; }
+            .photo-category-title { font-size: 22px; }
         }
     </style>
 </head>
@@ -676,7 +261,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content fade-in">
-            <img src="images/avatar.jpg" alt="张琳" class="hero-avatar">
+            <img src="images/avatar/avatar.jpg" alt="张琳" class="hero-avatar">
             <h1>张琳</h1>
             <p class="hero-subtitle">厦门大学 · 新闻传播学 · 广播电视</p>
             <p class="hero-desc">
@@ -706,17 +291,17 @@
             <div class="timeline-item fade-in">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <div class="timeline-year">2025</div>
-                    <div class="timeline-title">专业竞赛突破</div>
-                    <div class="timeline-desc">获得大广赛平面广告三等奖、上海国际大学生广告节优胜奖</div>
+                    <div class="timeline-year">2026.03 - 2026.06</div>
+                    <div class="timeline-title">威力声音箱 · 市场营销实习</div>
+                    <div class="timeline-desc">主导商用客户角色调研，确立"品类教育优先于品牌推广"的内容策略，独立策划"氛围歌单"系列营销活动</div>
                 </div>
             </div>
             <div class="timeline-item fade-in">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <div class="timeline-year">2026</div>
-                    <div class="timeline-title">瑞幸咖啡实习</div>
-                    <div class="timeline-desc">主导第七届技能大赛全系列视频，参与全案宣发策划</div>
+                    <div class="timeline-year">2026.06 - 至今</div>
+                    <div class="timeline-title">瑞幸咖啡 · 运营训练部实习</div>
+                    <div class="timeline-desc">主导第七届技能大赛全系列视频，参与全案宣发策划，搭建内部课程视频</div>
                 </div>
             </div>
         </div>
@@ -729,40 +314,132 @@
             <h2 class="section-title">摄影作品</h2>
             <p class="section-desc">用镜头捕捉瞬间，用光影讲述故事。每一张照片都是一次与世界的对话。</p>
         </div>
-        <div class="card-grid">
-            <div class="card fade-in" onclick="openModal('photography', 0)">
-                <img src="images/photography/photo1.jpg" alt="建筑摄影" class="card-image">
-                <div class="card-content">
-                    <h3 class="card-title">城市建筑</h3>
-                    <p class="card-desc">古典与现代交融的城市建筑景观，仰拍视角展现建筑的巍峨感，通过光影、色彩的对比，营造出时空交错的视觉美感。</p>
-                    <div class="card-tags">
-                        <span class="tag">建筑</span>
-                        <span class="tag">城市</span>
-                        <span class="tag">光影</span>
+
+        <!-- 风光自然 -->
+        <div class="photo-category fade-in">
+            <h3 class="photo-category-title">风光自然</h3>
+            <div class="card-grid">
+                <div class="card" onclick="openModal('photo-landscape', 0)">
+                    <div class="card-carousel" data-category="photo-landscape" data-index="0">
+                        <div class="card-carousel-track">
+                            <div class="card-carousel-slide"><img src="images/photography/landscape/landscape_1.jpg" alt="云海山峦"></div>
+                            <div class="card-carousel-slide"><img src="images/photography/landscape/landscape_2.jpg" alt="落日剪影"></div>
+                        </div>
+                        <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                        <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                        <div class="card-carousel-dots">
+                            <div class="card-carousel-dot active"></div>
+                            <div class="card-carousel-dot"></div>
+                        </div>
+                        <div class="card-carousel-counter">1 / 2</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">风光自然</h3>
+                        <p class="card-desc">大自然的壮丽与细腻，用镜头定格天空、山水、光影的瞬间变化，展现自然之美的无限可能。</p>
+                        <div class="card-tags">
+                            <span class="tag">风光</span>
+                            <span class="tag">自然</span>
+                            <span class="tag">色彩</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card fade-in" onclick="openModal('photography', 1)">
-                <img src="images/photography/photo2.jpg" alt="人文摄影" class="card-image">
-                <div class="card-content">
-                    <h3 class="card-title">人文纪实</h3>
-                    <p class="card-desc">捕捉生活中的真实瞬间，记录人们的情感与故事。用镜头探索人与环境的关系，展现生活的温度。</p>
-                    <div class="card-tags">
-                        <span class="tag">人文</span>
-                        <span class="tag">纪实</span>
-                        <span class="tag">故事</span>
+        </div>
+
+        <!-- 城市建筑 -->
+        <div class="photo-category fade-in">
+            <h3 class="photo-category-title">城市建筑</h3>
+            <div class="card-grid">
+                <div class="card" onclick="openModal('photo-urban', 0)">
+                    <div class="card-carousel" data-category="photo-urban" data-index="0">
+                        <div class="card-carousel-track">
+                            <div class="card-carousel-slide"><img src="images/photography/urban/urban_1.jpg" alt="古典与现代"></div>
+                            <div class="card-carousel-slide"><img src="images/photography/urban/urban_2.jpg" alt="极简路灯"></div>
+                            <div class="card-carousel-slide"><img src="images/photography/urban/urban_3.jpg" alt="黑白通道"></div>
+                            <div class="card-carousel-slide"><img src="images/photography/urban/urban_4.jpg" alt="城市街景"></div>
+                            <div class="card-carousel-slide"><img src="images/photography/urban/urban_5.jpg" alt="建筑线条"></div>
+                        </div>
+                        <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                        <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                        <div class="card-carousel-dots">
+                            <div class="card-carousel-dot active"></div>
+                            <div class="card-carousel-dot"></div>
+                            <div class="card-carousel-dot"></div>
+                            <div class="card-carousel-dot"></div>
+                            <div class="card-carousel-dot"></div>
+                        </div>
+                        <div class="card-carousel-counter">1 / 5</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">城市建筑</h3>
+                        <p class="card-desc">古典与现代交融的城市建筑景观，仰拍视角展现建筑的巍峨感，通过光影、色彩的对比，营造出时空交错的视觉美感。</p>
+                        <div class="card-tags">
+                            <span class="tag">建筑</span>
+                            <span class="tag">城市</span>
+                            <span class="tag">光影</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card fade-in" onclick="openModal('photography', 2)">
-                <img src="images/photography/photo3.jpg" alt="风光摄影" class="card-image">
-                <div class="card-content">
-                    <h3 class="card-title">风光自然</h3>
-                    <p class="card-desc">大自然的壮丽与细腻，用镜头定格天空、山水、光影的瞬间变化，展现自然之美的无限可能。</p>
-                    <div class="card-tags">
-                        <span class="tag">风光</span>
-                        <span class="tag">自然</span>
-                        <span class="tag">色彩</span>
+        </div>
+
+        <!-- 自然细节 -->
+        <div class="photo-category fade-in">
+            <h3 class="photo-category-title">自然细节</h3>
+            <div class="card-grid">
+                <div class="card" onclick="openModal('photo-nature', 0)">
+                    <div class="card-carousel" data-category="photo-nature" data-index="0">
+                        <div class="card-carousel-track">
+                            <div class="card-carousel-slide"><img src="images/photography/nature/nature_1.jpg" alt="山谷绿意"></div>
+                            <div class="card-carousel-slide"><img src="images/photography/nature/nature_2.jpg" alt="山野风光"></div>
+                        </div>
+                        <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                        <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                        <div class="card-carousel-dots">
+                            <div class="card-carousel-dot active"></div>
+                            <div class="card-carousel-dot"></div>
+                        </div>
+                        <div class="card-carousel-counter">1 / 2</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">自然细节</h3>
+                        <p class="card-desc">捕捉自然中的细腻瞬间，从山谷绿意到郊野风光，用镜头探索大自然的宁静与治愈。</p>
+                        <div class="card-tags">
+                            <span class="tag">自然</span>
+                            <span class="tag">细节</span>
+                            <span class="tag">治愈</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 创意静物 -->
+        <div class="photo-category fade-in">
+            <h3 class="photo-category-title">创意静物</h3>
+            <div class="card-grid">
+                <div class="card" onclick="openModal('photo-detail', 0)">
+                    <div class="card-carousel" data-category="photo-detail" data-index="0">
+                        <div class="card-carousel-track">
+                            <div class="card-carousel-slide"><img src="images/photography/detail/detail_1.jpg" alt="手工向日葵"></div>
+                            <div class="card-carousel-slide"><img src="images/photography/detail/detail_2.jpg" alt="创意静物"></div>
+                        </div>
+                        <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                        <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                        <div class="card-carousel-dots">
+                            <div class="card-carousel-dot active"></div>
+                            <div class="card-carousel-dot"></div>
+                        </div>
+                        <div class="card-carousel-counter">1 / 2</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">创意静物</h3>
+                        <p class="card-desc">用镜头捕捉手工与生活中的小美好，治愈系的静物摄影，展现细节中的温度与创意。</p>
+                        <div class="card-tags">
+                            <span class="tag">静物</span>
+                            <span class="tag">创意</span>
+                            <span class="tag">治愈</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -778,7 +455,23 @@
         </div>
         <div class="card-grid">
             <div class="card fade-in" onclick="openModal('video', 0)">
-                <img src="images/video/video1.jpg" alt="布洛芬广告" class="card-image">
+                <div class="card-carousel" data-category="video" data-index="0">
+                    <div class="card-carousel-track">
+                        <div class="card-carousel-slide"><img src="images/video/buofen/buofen_1.jpg" alt="布洛芬广告1"></div>
+                        <div class="card-carousel-slide"><img src="images/video/buofen/buofen_2.jpg" alt="布洛芬广告2"></div>
+                        <div class="card-carousel-slide"><img src="images/video/buofen/buofen_3.jpg" alt="布洛芬广告3"></div>
+                        <div class="card-carousel-slide"><img src="images/video/buofen/buofen_4.jpg" alt="布洛芬广告4"></div>
+                    </div>
+                    <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                    <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                    <div class="card-carousel-dots">
+                        <div class="card-carousel-dot active"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                    </div>
+                    <div class="card-carousel-counter">1 / 4</div>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">上广节—布洛芬止痛药广告</h3>
                     <p class="card-desc">参加上海国际大学生广告节荣获"优胜奖"。基于产品定位与目标人群洞察，打磨脚本结构、镜头语言与情绪递进，完成从创意构思到剪辑成片的全流程。</p>
@@ -790,14 +483,50 @@
                 </div>
             </div>
             <div class="card fade-in" onclick="openModal('video', 1)">
-                <img src="images/video/video2.jpg" alt="厦门声音" class="card-image">
+                <div class="card-carousel" data-category="video" data-index="1">
+                    <div class="card-carousel-track">
+                        <div class="card-carousel-slide"><img src="images/video/xiamen/xiamen_1.jpg" alt="厦门声音1"></div>
+                        <div class="card-carousel-slide"><img src="images/video/xiamen/xiamen_2.jpg" alt="厦门声音2"></div>
+                    </div>
+                    <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                    <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                    <div class="card-carousel-dots">
+                        <div class="card-carousel-dot active"></div>
+                        <div class="card-carousel-dot"></div>
+                    </div>
+                    <div class="card-carousel-counter">1 / 2</div>
+                </div>
                 <div class="card-content">
-                    <h3 class="card-title">厦门的声音 · 篮球赛事</h3>
-                    <p class="card-desc">记录厦门城市的声音与篮球赛事的激情，通过声音与画面的结合，展现城市的活力与运动的魅力。</p>
+                    <h3 class="card-title">厦门的声音</h3>
+                    <p class="card-desc">记录厦门城市的声音，通过声音与画面的结合，展现城市的活力与魅力。用镜头捕捉城市的每一个精彩瞬间，用声音传递城市的脉搏。</p>
                     <div class="card-tags">
                         <span class="tag">纪录片</span>
                         <span class="tag">城市</span>
+                        <span class="tag">声音</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card fade-in" onclick="openModal('video', 2)">
+                <div class="card-carousel" data-category="video" data-index="2">
+                    <div class="card-carousel-track">
+                        <div class="card-carousel-slide"><img src="images/video/basketball/basketball_1.jpg" alt="篮球赛事1"></div>
+                        <div class="card-carousel-slide"><img src="images/video/basketball/basketball_2.jpg" alt="篮球赛事2"></div>
+                    </div>
+                    <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                    <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                    <div class="card-carousel-dots">
+                        <div class="card-carousel-dot active"></div>
+                        <div class="card-carousel-dot"></div>
+                    </div>
+                    <div class="card-carousel-counter">1 / 2</div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">篮球赛事</h3>
+                    <p class="card-desc">记录篮球赛事的激情，用镜头捕捉赛场上的每一个精彩瞬间，用画面传递运动的魅力与热血。</p>
+                    <div class="card-tags">
                         <span class="tag">体育</span>
+                        <span class="tag">赛事</span>
+                        <span class="tag">纪实</span>
                     </div>
                 </div>
             </div>
@@ -813,7 +542,21 @@
         </div>
         <div class="card-grid">
             <div class="card fade-in" onclick="openModal('ads', 0)">
-                <img src="images/ads/ad1.jpg" alt="赤尾避孕套广告" class="card-image">
+                <div class="card-carousel" data-category="ads" data-index="0">
+                    <div class="card-carousel-track">
+                        <div class="card-carousel-slide"><img src="images/ads/ad_1.jpg" alt="赤尾广告1"></div>
+                        <div class="card-carousel-slide"><img src="images/ads/ad_2.jpg" alt="赤尾广告2"></div>
+                        <div class="card-carousel-slide"><img src="images/ads/ad_3.jpg" alt="赤尾广告3"></div>
+                    </div>
+                    <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                    <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                    <div class="card-carousel-dots">
+                        <div class="card-carousel-dot active"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                    </div>
+                    <div class="card-carousel-counter">1 / 3</div>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">赤尾避孕套平面广告</h3>
                     <p class="card-desc">为赤尾品牌设计的平面广告作品，通过简洁有力的视觉语言，传达品牌的核心价值与产品特点。</p>
@@ -836,7 +579,23 @@
         </div>
         <div class="card-grid">
             <div class="card fade-in" onclick="openModal('planning', 0)">
-                <img src="images/planning/plan1.jpg" alt="郁美净策划案" class="card-image">
+                <div class="card-carousel" data-category="planning" data-index="0">
+                    <div class="card-carousel-track">
+                        <div class="card-carousel-slide"><img src="images/planning/yumeijing/yumeijing_1.jpg" alt="郁美净策划1"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/yumeijing/yumeijing_2.jpg" alt="郁美净策划2"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/yumeijing/yumeijing_3.jpg" alt="郁美净策划3"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/yumeijing/yumeijing_4.jpg" alt="郁美净策划4"></div>
+                    </div>
+                    <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                    <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                    <div class="card-carousel-dots">
+                        <div class="card-carousel-dot active"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                    </div>
+                    <div class="card-carousel-counter">1 / 4</div>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">学院奖—郁美净策划案</h3>
                     <p class="card-desc">参与品牌策划案创作，围绕品牌定位与目标人群，将零散创意整合为逻辑清晰的策划主线，推动方案从想法转为可执行结构。</p>
@@ -848,7 +607,29 @@
                 </div>
             </div>
             <div class="card fade-in" onclick="openModal('planning', 1)">
-                <img src="images/planning/plan2.jpg" alt="威力声策划案" class="card-image">
+                <div class="card-carousel" data-category="planning" data-index="1">
+                    <div class="card-carousel-track">
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_2.jpg" alt="威力声线上1"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_3.jpg" alt="威力声线上2"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_4.jpg" alt="威力声线上3"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_5.jpg" alt="威力声线上4"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_6.jpg" alt="威力声线上5"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_7.jpg" alt="威力声线上6"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_8.jpg" alt="威力声线上7"></div>
+                    </div>
+                    <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                    <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                    <div class="card-carousel-dots">
+                        <div class="card-carousel-dot active"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                    </div>
+                    <div class="card-carousel-counter">1 / 7</div>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">威力声—线上营销策划方案</h3>
                     <p class="card-desc">主导商用客户角色调研，解构核心人群的决策逻辑，确立"品类教育优先于品牌推广"的内容策略，搭建小红书、抖音商用音频选题库。</p>
@@ -860,7 +641,23 @@
                 </div>
             </div>
             <div class="card fade-in" onclick="openModal('planning', 2)">
-                <img src="images/planning/plan3.jpg" alt="威力声事件营销" class="card-image">
+                <div class="card-carousel" data-category="planning" data-index="2">
+                    <div class="card-carousel-track">
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_2.jpg" alt="威力声事件1"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_4.jpg" alt="威力声事件2"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_6.jpg" alt="威力声事件3"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_8.jpg" alt="威力声事件4"></div>
+                    </div>
+                    <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                    <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                    <div class="card-carousel-dots">
+                        <div class="card-carousel-dot active"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                    </div>
+                    <div class="card-carousel-counter">1 / 4</div>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">威力声—事件营销案例</h3>
                     <p class="card-desc">独立策划"氛围歌单"系列营销活动，覆盖咖啡厅、餐饮店等4+商业场景，设计软性口播植入与私域引流链路，输出《商用歌单运营SOP》。</p>
@@ -883,7 +680,21 @@
         </div>
         <div class="card-grid">
             <div class="card fade-in" onclick="openModal('wechat', 0)">
-                <img src="images/wechat/wechat1.jpg" alt="公众号作品" class="card-image">
+                <div class="card-carousel" data-category="wechat" data-index="0">
+                    <div class="card-carousel-track">
+                        <div class="card-carousel-slide"><img src="images/wechat/wechat_2.jpg" alt="公众号作品1"></div>
+                        <div class="card-carousel-slide"><img src="images/wechat/wechat_3.jpg" alt="公众号作品2"></div>
+                        <div class="card-carousel-slide"><img src="images/wechat/wechat_4.jpg" alt="公众号作品3"></div>
+                    </div>
+                    <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
+                    <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
+                    <div class="card-carousel-dots">
+                        <div class="card-carousel-dot active"></div>
+                        <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
+                    </div>
+                    <div class="card-carousel-counter">1 / 3</div>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">公众号运营作品</h3>
                     <p class="card-desc">在厦大广播电台宣传部期间，优化排版体系，拆解优质公众号的排版逻辑，在秀米搭建个人组件库，使3篇推文被校团委转载，单篇最高阅读量5000+。</p>
@@ -929,148 +740,98 @@
         <div class="modal">
             <button class="modal-close" onclick="closeModal()">✕</button>
             <div class="modal-gallery">
-                <div class="gallery-container" id="galleryContainer">
-                    <!-- Gallery items will be inserted here -->
-                </div>
+                <div class="gallery-container" id="galleryContainer"></div>
                 <button class="gallery-btn gallery-prev" onclick="prevSlide()">‹</button>
                 <button class="gallery-btn gallery-next" onclick="nextSlide()">›</button>
-                <div class="gallery-dots" id="galleryDots">
-                    <!-- Dots will be inserted here -->
-                </div>
+                <div class="gallery-dots" id="galleryDots"></div>
             </div>
             <div class="modal-info">
                 <h3 class="modal-title" id="modalTitle"></h3>
                 <p class="modal-desc" id="modalDesc"></p>
-                <div class="modal-meta" id="modalMeta">
-                    <!-- Meta info will be inserted here -->
-                </div>
+                <div class="modal-meta" id="modalMeta"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // Data for modals
+        // Portfolio Data
         const portfolioData = {
-            photography: [
-                {
-                    title: '城市建筑',
-                    desc: '古典与现代交融的城市建筑景观，仰拍视角展现建筑的巍峨感。画面主体是一栋暖色调（米黄/金棕）的古典风格建筑，阳光柔和地洒在墙面上，光影交织凸显出建筑的厚重与精致。背景矗立着现代感十足的摩天高楼，与古典建筑形成强烈对比，营造出一种"古今对话"的浪漫氛围。',
-                    images: ['images/photography/photo1.jpg'],
-                    meta: {
-                        '类型': '建筑摄影',
-                        '地点': '城市街头',
-                        '设备': '专业相机',
-                        '后期': 'Lightroom'
-                    }
-                },
-                {
-                    title: '人文纪实',
-                    desc: '捕捉生活中的真实瞬间，记录人们的情感与故事。用镜头探索人与环境的关系，展现生活的温度。每一张照片都承载着一个独特的故事，等待被发现和分享。',
-                    images: ['images/photography/photo2.jpg'],
-                    meta: {
-                        '类型': '人文摄影',
-                        '风格': '纪实',
-                        '主题': '生活瞬间',
-                        '情感': '温暖真实'
-                    }
-                },
-                {
-                    title: '风光自然',
-                    desc: '大自然的壮丽与细腻，用镜头定格天空、山水、光影的瞬间变化。展现自然之美的无限可能，让人感受到大自然的鬼斧神工和无穷魅力。',
-                    images: ['images/photography/photo3.jpg'],
-                    meta: {
-                        '类型': '风光摄影',
-                        '主题': '自然之美',
-                        '色彩': '丰富层次',
-                        '氛围': '宁静壮美'
-                    }
-                }
-            ],
+            'photo-landscape': [{
+                title: '风光自然',
+                desc: '大自然的壮丽与细腻，用镜头定格天空、山水、光影的瞬间变化。云海翻涌的山峦与落日余晖中的剪影，展现自然之美的无限可能。',
+                images: ['images/photography/landscape/landscape_1.jpg', 'images/photography/landscape/landscape_2.jpg'],
+                meta: { '类型': '风光摄影', '主题': '自然之美', '色彩': '丰富层次', '氛围': '宁静壮美' }
+            }],
+            'photo-urban': [{
+                title: '城市建筑',
+                desc: '古典与现代交融的城市建筑景观。从暖色调古典建筑到极简路灯，从黑白纵深通道到城市街景，展现建筑的多元美感。',
+                images: ['images/photography/urban/urban_1.jpg', 'images/photography/urban/urban_2.jpg', 'images/photography/urban/urban_3.jpg', 'images/photography/urban/urban_4.jpg', 'images/photography/urban/urban_5.jpg'],
+                meta: { '类型': '建筑摄影', '风格': '多元', '视角': '仰拍+平视', '后期': 'Lightroom' }
+            }],
+            'photo-nature': [{
+                title: '自然细节',
+                desc: '捕捉自然中的细腻瞬间，从绿意盎然的山谷到郊野木栅栏后的山丘，展现大自然的宁静与治愈力量。',
+                images: ['images/photography/nature/nature_1.jpg', 'images/photography/nature/nature_2.jpg'],
+                meta: { '类型': '自然摄影', '主题': '细节之美', '氛围': '治愈宁静', '元素': '山丘·绿植' }
+            }],
+            'photo-detail': [{
+                title: '创意静物',
+                desc: '用镜头捕捉手工与生活中的小美好。草坪上的手工钩织向日葵，充满治愈感与手工温度。',
+                images: ['images/photography/detail/detail_1.jpg', 'images/photography/detail/detail_2.jpg'],
+                meta: { '类型': '静物摄影', '风格': '治愈清新', '主题': '手工创意', '色彩': '明快温暖' }
+            }],
             video: [
                 {
                     title: '上广节—布洛芬止痛药广告',
-                    desc: '参加上海国际大学生广告节荣获"优胜奖"。本人协助团队完成从创意构思到剪辑成片的全流程。基于布洛芬产品定位与目标人群洞察，打磨脚本结构、镜头语言与情绪递进，完成分镜方案设计。强化叙事节奏与情感表达，精准匹配画面逻辑，通过转场与节奏递进情感；同步完成基础音效适配。',
-                    images: ['images/video/video1.jpg'],
-                    meta: {
-                        '类型': '视频广告',
-                        '奖项': '上广节优胜奖',
-                        '时长': '60秒',
-                        '职责': '剪辑+创意'
-                    }
+                    desc: '参加上海国际大学生广告节荣获"优胜奖"。基于产品定位与目标人群洞察，打磨脚本结构、镜头语言与情绪递进，完成从创意构思到剪辑成片的全流程。强化叙事节奏与情感表达，精准匹配画面逻辑，通过转场与节奏递进情感；同步完成基础音效适配。',
+                    images: ['images/video/buofen/buofen_1.jpg', 'images/video/buofen/buofen_2.jpg', 'images/video/buofen/buofen_3.jpg', 'images/video/buofen/buofen_4.jpg'],
+                    meta: { '类型': '视频广告', '奖项': '上广节优胜奖', '时长': '60秒', '职责': '剪辑+创意' }
                 },
                 {
-                    title: '厦门的声音 · 篮球赛事',
-                    desc: '记录厦门城市的声音与篮球赛事的激情，通过声音与画面的结合，展现城市的活力与运动的魅力。用镜头捕捉赛场上的每一个精彩瞬间，用声音传递运动的激情与城市的脉搏。',
-                    images: ['images/video/video2.jpg'],
-                    meta: {
-                        '类型': '纪录片',
-                        '主题': '城市+体育',
-                        '风格': '纪实',
-                        '元素': '声音+画面'
-                    }
-                }
-            ],
-            ads: [
+                    title: '厦门的声音',
+                    desc: '记录厦门城市的声音，通过声音与画面的结合，展现城市的活力与魅力。用镜头捕捉城市的每一个精彩瞬间，用声音传递城市的脉搏。',
+                    images: ['images/video/xiamen/xiamen_1.jpg', 'images/video/xiamen/xiamen_2.jpg'],
+                    meta: { '类型': '纪录片', '主题': '城市声音', '风格': '纪实', '元素': '声音+画面' }
+                },
                 {
-                    title: '赤尾避孕套平面广告',
-                    desc: '为赤尾品牌设计的平面广告作品，通过简洁有力的视觉语言，传达品牌的核心价值与产品特点。在设计中注重色彩搭配与构图平衡，力求在有限的画面空间内传递最有效的品牌信息。',
-                    images: ['images/ads/ad1.jpg'],
-                    meta: {
-                        '类型': '平面广告',
-                        '品牌': '赤尾',
-                        '风格': '简洁现代',
-                        '工具': 'PS/AI'
-                    }
+                    title: '篮球赛事',
+                    desc: '记录篮球赛事的激情，用镜头捕捉赛场上的每一个精彩瞬间，用画面传递运动的魅力与热血。',
+                    images: ['images/video/basketball/basketball_1.jpg', 'images/video/basketball/basketball_2.jpg'],
+                    meta: { '类型': '体育纪录片', '主题': '篮球赛事', '风格': '热血纪实', '元素': '运动+激情' }
                 }
             ],
+            ads: [{
+                title: '赤尾避孕套平面广告',
+                desc: '为赤尾品牌设计的平面广告作品，通过简洁有力的视觉语言，传达品牌的核心价值与产品特点。在设计中注重色彩搭配与构图平衡，力求在有限的画面空间内传递最有效的品牌信息。',
+                images: ['images/ads/ad_1.jpg', 'images/ads/ad_2.jpg', 'images/ads/ad_3.jpg'],
+                meta: { '类型': '平面广告', '品牌': '赤尾', '风格': '简洁现代', '工具': 'PS/AI' }
+            }],
             planning: [
                 {
                     title: '学院奖—郁美净策划案',
-                    desc: '参与品牌策划案创作，协助团队完成创意构思至方案落地全流程，依托市场调研保障策划方向贴合品牌。主导创意方向：围绕品牌定位与目标人群，将零散创意整合为逻辑清晰的策划主线，推动方案从想法转为可执行结构。配合团队完成各种调研工作，将数据转化为创意方向依据，确保策划案有品牌辨识度。',
-                    images: ['images/planning/plan1.jpg'],
-                    meta: {
-                        '类型': '品牌策划',
-                        '赛事': '学院奖',
-                        '品牌': '郁美净',
-                        '职责': '创意策划'
-                    }
+                    desc: '参与品牌策划案创作，围绕品牌定位与目标人群，将零散创意整合为逻辑清晰的策划主线，推动方案从想法转为可执行结构。配合团队完成各种调研工作，将数据转化为创意方向依据，确保策划案有品牌辨识度。',
+                    images: ['images/planning/yumeijing/yumeijing_1.jpg', 'images/planning/yumeijing/yumeijing_2.jpg', 'images/planning/yumeijing/yumeijing_3.jpg', 'images/planning/yumeijing/yumeijing_4.jpg'],
+                    meta: { '类型': '品牌策划', '赛事': '学院奖', '品牌': '郁美净', '职责': '创意策划' }
                 },
                 {
                     title: '威力声—线上营销策划方案',
                     desc: '主导商用客户角色调研，解构核心人群的决策逻辑，确立"品类教育优先于品牌推广"的内容策略。协同搭建小红书、抖音商用音频选题库，跟踪内容数据与用户反馈，输出数据分析报告并迭代创意方向，有效提升互动率。',
-                    images: ['images/planning/plan2.jpg'],
-                    meta: {
-                        '类型': '营销策划',
-                        '品牌': '威力声',
-                        '平台': '小红书+抖音',
-                        '策略': '品类教育'
-                    }
+                    images: ['images/planning/weilishen_online/weilishen_online_2.jpg', 'images/planning/weilishen_online/weilishen_online_3.jpg', 'images/planning/weilishen_online/weilishen_online_4.jpg', 'images/planning/weilishen_online/weilishen_online_5.jpg', 'images/planning/weilishen_online/weilishen_online_6.jpg', 'images/planning/weilishen_online/weilishen_online_7.jpg', 'images/planning/weilishen_online/weilishen_online_8.jpg'],
+                    meta: { '类型': '营销策划', '品牌': '威力声', '平台': '小红书+抖音', '策略': '品类教育' }
                 },
                 {
                     title: '威力声—事件营销案例',
                     desc: '独立策划"氛围歌单"系列营销活动，覆盖咖啡厅、餐饮店等4+商业场景，设计软性口播植入与"扫码获取同款歌单"私域引流链路，输出《商用歌单运营SOP》。通过场景化营销，将产品与消费者的生活场景深度绑定，提升品牌认知与用户粘性。',
-                    images: ['images/planning/plan3.jpg'],
-                    meta: {
-                        '类型': '事件营销',
-                        '品牌': '威力声',
-                        '场景': '4+商业场景',
-                        '产出': '运营SOP'
-                    }
+                    images: ['images/planning/weilishen_event/weilishen_event_2.jpg', 'images/planning/weilishen_event/weilishen_event_4.jpg', 'images/planning/weilishen_event/weilishen_event_6.jpg', 'images/planning/weilishen_event/weilishen_event_8.jpg'],
+                    meta: { '类型': '事件营销', '品牌': '威力声', '场景': '4+商业场景', '产出': '运营SOP' }
                 }
             ],
-            wechat: [
-                {
-                    title: '公众号运营作品',
-                    desc: '在厦大广播电台宣传部期间，优化排版体系，拆解优质公众号的排版逻辑，在秀米搭建个人组件库，使3篇推文被校团委转载，单篇最高阅读量5000+。构建稿件质量提升闭环，积累真实素材形成"写稿—反馈—修改"闭环，半年内稿件修改次数从平均3轮降至1轮。系统学习AU课程，将单期15分钟音频的修音时间从2小时压缩至40分钟。',
-                    images: ['images/wechat/wechat1.jpg'],
-                    meta: {
-                        '类型': '公众号运营',
-                        '平台': '微信公众号',
-                        '成就': '3篇被转载',
-                        '阅读量': '5000+'
-                    }
-                }
-            ]
+            wechat: [{
+                title: '公众号运营作品',
+                desc: '在厦大广播电台宣传部期间，优化排版体系，拆解优质公众号的排版逻辑，在秀米搭建个人组件库，使3篇推文被校团委转载，单篇最高阅读量5000+。构建稿件质量提升闭环，积累真实素材形成"写稿—反馈—修改"闭环，半年内稿件修改次数从平均3轮降至1轮。',
+                images: ['images/wechat/wechat_2.jpg', 'images/wechat/wechat_3.jpg', 'images/wechat/wechat_4.jpg'],
+                meta: { '类型': '公众号运营', '平台': '微信公众号', '成就': '3篇被转载', '阅读量': '5000+' }
+            }]
         };
 
         let currentCategory = '';
@@ -1081,6 +842,52 @@
         function toggleNav() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
+
+        // Card carousel functions
+        function cardCarouselPrev(btn) {
+            const carousel = btn.closest('.card-carousel');
+            const track = carousel.querySelector('.card-carousel-track');
+            const slides = carousel.querySelectorAll('.card-carousel-slide');
+            const dots = carousel.querySelectorAll('.card-carousel-dot');
+            const counter = carousel.querySelector('.card-carousel-counter');
+            let current = parseInt(track.dataset.current || 0);
+            current = (current - 1 + slides.length) % slides.length;
+            track.dataset.current = current;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+            counter.textContent = `${current + 1} / ${slides.length}`;
+        }
+
+        function cardCarouselNext(btn) {
+            const carousel = btn.closest('.card-carousel');
+            const track = carousel.querySelector('.card-carousel-track');
+            const slides = carousel.querySelectorAll('.card-carousel-slide');
+            const dots = carousel.querySelectorAll('.card-carousel-dot');
+            const counter = carousel.querySelector('.card-carousel-counter');
+            let current = parseInt(track.dataset.current || 0);
+            current = (current + 1) % slides.length;
+            track.dataset.current = current;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+            counter.textContent = `${current + 1} / ${slides.length}`;
+        }
+
+        // Initialize card carousel dots click
+        document.querySelectorAll('.card-carousel-dot').forEach(dot => {
+            dot.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const carousel = this.closest('.card-carousel');
+                const track = carousel.querySelector('.card-carousel-track');
+                const slides = carousel.querySelectorAll('.card-carousel-slide');
+                const dots = carousel.querySelectorAll('.card-carousel-dot');
+                const counter = carousel.querySelector('.card-carousel-counter');
+                const idx = Array.from(dots).indexOf(this);
+                track.dataset.current = idx;
+                track.style.transform = `translateX(-${idx * 100}%)`;
+                dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+                counter.textContent = `${idx + 1} / ${slides.length}`;
+            });
+        });
 
         // Modal functions
         function openModal(category, index) {
@@ -1096,23 +903,19 @@
             const desc = document.getElementById('modalDesc');
             const meta = document.getElementById('modalMeta');
 
-            // Set content
             title.textContent = data.title;
             desc.textContent = data.desc;
 
-            // Build gallery
             container.innerHTML = data.images.map(img => `
                 <div class="gallery-item">
                     <img src="${img}" alt="${data.title}">
                 </div>
             `).join('');
 
-            // Build dots
             dots.innerHTML = data.images.map((_, i) => `
                 <div class="gallery-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></div>
             `).join('');
 
-            // Build meta
             meta.innerHTML = Object.entries(data.meta).map(([label, value]) => `
                 <div class="meta-item">
                     <span class="meta-label">${label}</span>
@@ -1120,7 +923,6 @@
                 </div>
             `).join('');
 
-            // Show modal
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -1150,62 +952,38 @@
         function updateGallery() {
             const container = document.getElementById('galleryContainer');
             const dots = document.querySelectorAll('.gallery-dot');
-
             container.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
-            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
         }
 
         // Close modal on overlay click
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            if (e.target === this) closeModal();
         });
 
-        // Close modal on Escape key
+        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-            }
-            if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
         });
 
         // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Smooth scroll for navigation links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile nav
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     document.querySelector('.nav-links').classList.remove('active');
                 }
             });
