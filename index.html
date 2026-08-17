@@ -109,7 +109,7 @@
             cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .card-image { width: 100%; height: 250px; object-fit: cover; }
+        .card-image { width: 100%; height: auto; display: block; }
         .card-content { padding: 25px; }
         .card-title { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
         .card-desc { font-size: 15px; color: var(--gray); line-height: 1.6; margin-bottom: 15px; }
@@ -120,7 +120,7 @@
         .card-carousel { position: relative; overflow: hidden; }
         .card-carousel-track { display: flex; transition: transform 0.3s ease; }
         .card-carousel-slide { min-width: 100%; }
-        .card-carousel-slide img { width: 100%; height: 250px; object-fit: cover; display: block; }
+        .card-carousel-slide img { width: 100%; height: auto; display: block; }
         .card-carousel-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(0,0,0,0.5); border: none; color: white;
@@ -167,7 +167,7 @@
         .modal-gallery { position: relative; overflow: hidden; }
         .gallery-container { display: flex; transition: transform 0.3s ease; }
         .gallery-item { min-width: 100%; }
-        .gallery-item img { width: 100%; height: 400px; object-fit: cover; }
+        .gallery-item img { width: 100%; height: auto; max-height: 70vh; object-fit: contain; display: block; margin: 0 auto; }
         .gallery-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(0,0,0,0.5); border: none; color: white;
@@ -235,7 +235,7 @@
             .timeline-dot { left: 20px; }
             .card-grid { grid-template-columns: 1fr; }
             .modal { width: 95%; margin: 20px; }
-            .gallery-item img { height: 250px; }
+            .gallery-item img { max-height: 50vh; }
             .contact-grid { flex-direction: column; align-items: center; }
             .hero-cta { flex-direction: column; gap: 15px; }
             .photo-category-title { font-size: 22px; }
@@ -609,13 +609,9 @@
             <div class="card fade-in" onclick="openModal('planning', 1)">
                 <div class="card-carousel" data-category="planning" data-index="1">
                     <div class="card-carousel-track">
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_2.jpg" alt="威力声线上1"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_3.jpg" alt="威力声线上2"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_4.jpg" alt="威力声线上3"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_5.jpg" alt="威力声线上4"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_6.jpg" alt="威力声线上5"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_7.jpg" alt="威力声线上6"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_8.jpg" alt="威力声线上7"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_1.jpg" alt="威力声线上1"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_2.jpg" alt="威力声线上2"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_online/weilishen_online_3.jpg" alt="威力声线上3"></div>
                     </div>
                     <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
                     <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
@@ -623,12 +619,8 @@
                         <div class="card-carousel-dot active"></div>
                         <div class="card-carousel-dot"></div>
                         <div class="card-carousel-dot"></div>
-                        <div class="card-carousel-dot"></div>
-                        <div class="card-carousel-dot"></div>
-                        <div class="card-carousel-dot"></div>
-                        <div class="card-carousel-dot"></div>
                     </div>
-                    <div class="card-carousel-counter">1 / 7</div>
+                    <div class="card-carousel-counter">1 / 3</div>
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">威力声—线上营销策划方案</h3>
@@ -643,20 +635,16 @@
             <div class="card fade-in" onclick="openModal('planning', 2)">
                 <div class="card-carousel" data-category="planning" data-index="2">
                     <div class="card-carousel-track">
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_2.jpg" alt="威力声事件1"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_4.jpg" alt="威力声事件2"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_6.jpg" alt="威力声事件3"></div>
-                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_8.jpg" alt="威力声事件4"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_1.jpg" alt="威力声事件1"></div>
+                        <div class="card-carousel-slide"><img src="images/planning/weilishen_event/weilishen_event_2.jpg" alt="威力声事件2"></div>
                     </div>
                     <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
                     <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
                     <div class="card-carousel-dots">
                         <div class="card-carousel-dot active"></div>
                         <div class="card-carousel-dot"></div>
-                        <div class="card-carousel-dot"></div>
-                        <div class="card-carousel-dot"></div>
                     </div>
-                    <div class="card-carousel-counter">1 / 4</div>
+                    <div class="card-carousel-counter">1 / 2</div>
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">威力声—事件营销案例</h3>
@@ -682,9 +670,10 @@
             <div class="card fade-in" onclick="openModal('wechat', 0)">
                 <div class="card-carousel" data-category="wechat" data-index="0">
                     <div class="card-carousel-track">
-                        <div class="card-carousel-slide"><img src="images/wechat/wechat_2.jpg" alt="公众号作品1"></div>
-                        <div class="card-carousel-slide"><img src="images/wechat/wechat_3.jpg" alt="公众号作品2"></div>
-                        <div class="card-carousel-slide"><img src="images/wechat/wechat_4.jpg" alt="公众号作品3"></div>
+                        <div class="card-carousel-slide"><img src="images/wechat/wechat_1.jpg" alt="公众号作品1"></div>
+                        <div class="card-carousel-slide"><img src="images/wechat/wechat_2.jpg" alt="公众号作品2"></div>
+                        <div class="card-carousel-slide"><img src="images/wechat/wechat_3.jpg" alt="公众号作品3"></div>
+                        <div class="card-carousel-slide"><img src="images/wechat/wechat_4.jpg" alt="公众号作品4"></div>
                     </div>
                     <button class="card-carousel-btn card-carousel-prev" onclick="event.stopPropagation(); cardCarouselPrev(this)">‹</button>
                     <button class="card-carousel-btn card-carousel-next" onclick="event.stopPropagation(); cardCarouselNext(this)">›</button>
@@ -692,8 +681,9 @@
                         <div class="card-carousel-dot active"></div>
                         <div class="card-carousel-dot"></div>
                         <div class="card-carousel-dot"></div>
+                        <div class="card-carousel-dot"></div>
                     </div>
-                    <div class="card-carousel-counter">1 / 3</div>
+                    <div class="card-carousel-counter">1 / 4</div>
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">公众号运营作品</h3>
@@ -816,20 +806,20 @@
                 {
                     title: '威力声—线上营销策划方案',
                     desc: '主导商用客户角色调研，解构核心人群的决策逻辑，确立"品类教育优先于品牌推广"的内容策略。协同搭建小红书、抖音商用音频选题库，跟踪内容数据与用户反馈，输出数据分析报告并迭代创意方向，有效提升互动率。',
-                    images: ['images/planning/weilishen_online/weilishen_online_2.jpg', 'images/planning/weilishen_online/weilishen_online_3.jpg', 'images/planning/weilishen_online/weilishen_online_4.jpg', 'images/planning/weilishen_online/weilishen_online_5.jpg', 'images/planning/weilishen_online/weilishen_online_6.jpg', 'images/planning/weilishen_online/weilishen_online_7.jpg', 'images/planning/weilishen_online/weilishen_online_8.jpg'],
+                    images: ['images/planning/weilishen_online/weilishen_online_1.jpg', 'images/planning/weilishen_online/weilishen_online_2.jpg', 'images/planning/weilishen_online/weilishen_online_3.jpg'],
                     meta: { '类型': '营销策划', '品牌': '威力声', '平台': '小红书+抖音', '策略': '品类教育' }
                 },
                 {
                     title: '威力声—事件营销案例',
                     desc: '独立策划"氛围歌单"系列营销活动，覆盖咖啡厅、餐饮店等4+商业场景，设计软性口播植入与"扫码获取同款歌单"私域引流链路，输出《商用歌单运营SOP》。通过场景化营销，将产品与消费者的生活场景深度绑定，提升品牌认知与用户粘性。',
-                    images: ['images/planning/weilishen_event/weilishen_event_2.jpg', 'images/planning/weilishen_event/weilishen_event_4.jpg', 'images/planning/weilishen_event/weilishen_event_6.jpg', 'images/planning/weilishen_event/weilishen_event_8.jpg'],
+                    images: ['images/planning/weilishen_event/weilishen_event_1.jpg', 'images/planning/weilishen_event/weilishen_event_2.jpg'],
                     meta: { '类型': '事件营销', '品牌': '威力声', '场景': '4+商业场景', '产出': '运营SOP' }
                 }
             ],
             wechat: [{
                 title: '公众号运营作品',
                 desc: '在厦大广播电台宣传部期间，优化排版体系，拆解优质公众号的排版逻辑，在秀米搭建个人组件库，使3篇推文被校团委转载，单篇最高阅读量5000+。构建稿件质量提升闭环，积累真实素材形成"写稿—反馈—修改"闭环，半年内稿件修改次数从平均3轮降至1轮。',
-                images: ['images/wechat/wechat_2.jpg', 'images/wechat/wechat_3.jpg', 'images/wechat/wechat_4.jpg'],
+                images: ['images/wechat/wechat_1.jpg', 'images/wechat/wechat_2.jpg', 'images/wechat/wechat_3.jpg', 'images/wechat/wechat_4.jpg'],
                 meta: { '类型': '公众号运营', '平台': '微信公众号', '成就': '3篇被转载', '阅读量': '5000+' }
             }]
         };
