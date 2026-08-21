@@ -95,8 +95,7 @@
         }
         .hero h1 {
             font-size: clamp(44px, 7vw, 72px); font-weight: 700; margin-bottom: 16px;
-            background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #60a5fa 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            color: #ffffff;
         }
         .hero-subtitle { font-size: clamp(16px, 2.5vw, 20px); color: var(--gray); margin-bottom: 12px; font-weight: 400; }
         .hero-desc { font-size: 15px; color: var(--gray); max-width: 520px; margin: 0 auto 36px; line-height: 1.8; }
@@ -350,6 +349,107 @@
         .meta-label { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
         .meta-value { font-size: 14px; font-weight: 500; }
 
+        /* ====== FLOATING GALLERY (作品总览) ====== */
+        .gallery-showcase {
+            position: relative;
+            padding: 80px 0 60px;
+            overflow: hidden;
+            min-height: 600px;
+        }
+        .gallery-showcase-header {
+            text-align: center;
+            padding: 0 50px 40px;
+        }
+        .gallery-showcase-header .section-title {
+            font-size: clamp(36px, 5vw, 56px); font-weight: 800; letter-spacing: -0.04em;
+        }
+        .gallery-showcase-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            cursor: grab;
+        }
+        .gallery-showcase-container:active { cursor: grabbing; }
+        .gallery-float-card {
+            position: absolute;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            transition: box-shadow 0.3s, transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .gallery-float-card:hover {
+            box-shadow: 0 16px 48px rgba(167,139,250,0.3);
+            transform: scale(1.05) !important;
+            z-index: 100 !important;
+        }
+        .gallery-float-card img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            pointer-events: none;
+        }
+        .gallery-float-card .card-label {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 12px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            font-size: 13px; font-weight: 500; color: #fff;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .gallery-float-card:hover .card-label { opacity: 1; }
+
+        /* ====== QR CODE SECTION ====== */
+        .qrcode-section {
+            padding: 80px 50px; text-align: center;
+            background: linear-gradient(180deg, transparent 0%, rgba(167,139,250,0.03) 100%);
+        }
+        .qrcode-section .section-title {
+            font-size: clamp(28px, 4vw, 42px); margin-bottom: 16px;
+        }
+        .qrcode-section .section-desc {
+            font-size: 15px; color: var(--gray); max-width: 500px; margin: 0 auto 40px; line-height: 1.7;
+        }
+        .qrcode-card {
+            display: inline-block;
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 24px; padding: 40px 50px;
+            transition: all 0.3s;
+        }
+        .qrcode-card:hover {
+            border-color: rgba(167,139,250,0.3);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+            transform: translateY(-4px);
+        }
+        .qrcode-card img {
+            width: 200px; height: 200px; border-radius: 12px;
+            margin-bottom: 20px; object-fit: contain;
+        }
+        .qrcode-card p {
+            font-size: 14px; color: var(--gray); line-height: 1.6;
+        }
+        .qrcode-card .scan-hint {
+            font-size: 12px; color: var(--accent); margin-top: 12px;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        /* ====== INTERACTIVE CURSOR ====== */
+        .cursor-dot {
+            position: fixed; width: 8px; height: 8px;
+            background: var(--accent); border-radius: 50%;
+            pointer-events: none; z-index: 9998;
+            transition: transform 0.15s ease-out;
+            mix-blend-mode: difference;
+        }
+        .cursor-ring {
+            position: fixed; width: 36px; height: 36px;
+            border: 1.5px solid rgba(167,139,250,0.5); border-radius: 50%;
+            pointer-events: none; z-index: 9997;
+            transition: width 0.3s, height 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        .cursor-ring.hover {
+            width: 56px; height: 56px;
+            border-color: var(--accent);
+        }
+
         /* ====== ANIMATIONS ====== */
         .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -391,6 +491,12 @@
             .h-card.size-wide .h-card-media,
             .h-card.size-small .h-card-media,
             .h-card.size-medium .h-card-media { height: 240px; }
+            .gallery-showcase-container { height: 400px; overflow: hidden; }
+            .gallery-showcase-header { padding: 0 20px 30px; }
+            .qrcode-section { padding: 60px 20px; }
+            .qrcode-card { padding: 30px 24px; }
+            .qrcode-card img { width: 160px; height: 160px; }
+            .cursor-dot, .cursor-ring { display: none; }
         }
     </style>
 </head>
@@ -409,6 +515,7 @@
         <a href="#" class="nav-logo">张琳</a>
         <div class="nav-links">
             <a href="#home">首页</a>
+            <a href="#overview">总览</a>
             <a href="#about">关于</a>
             <a href="#portfolio">作品</a>
             <a href="#skills">技能</a>
@@ -437,11 +544,11 @@
                     <div class="stat-label">获奖作品</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">11+</div>
+                    <div class="stat-number">80+</div>
                     <div class="stat-label">摄影作品</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">3</div>
+                    <div class="stat-number">50+</div>
                     <div class="stat-label">视频作品</div>
                 </div>
                 <div class="stat-item">
@@ -449,6 +556,28 @@
                     <div class="stat-label">GPA / 4.0</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Floating Gallery Showcase -->
+    <section id="overview" class="gallery-showcase">
+        <div class="gallery-showcase-header fade-in">
+            <div class="section-label">Overview</div>
+            <h2 class="section-title">作品总览</h2>
+            <p class="section-desc">拖拽探索，每一张都是一次创作的旅程。</p>
+        </div>
+        <div class="gallery-showcase-container" id="galleryShowcase">
+            <!-- Placeholder cards - replace src with your images -->
+            <div class="gallery-float-card" style="left:5%;top:10%;width:220px;height:280px;z-index:5;"><img src="images/photography/landscape/landscape_1.jpg" alt="作品"><div class="card-label">风光摄影</div></div>
+            <div class="gallery-float-card" style="left:22%;top:5%;width:180px;height:240px;z-index:3;"><img src="images/photography/urban/urban_1.jpg" alt="作品"><div class="card-label">城市建筑</div></div>
+            <div class="gallery-float-card" style="left:38%;top:15%;width:260px;height:340px;z-index:8;"><img src="images/video/buofen/buofen_1.jpg" alt="作品"><div class="card-label">布洛芬广告</div></div>
+            <div class="gallery-float-card" style="left:58%;top:2%;width:200px;height:260px;z-index:4;"><img src="images/photography/nature/nature_1.jpg" alt="作品"><div class="card-label">自然细节</div></div>
+            <div class="gallery-float-card" style="left:75%;top:12%;width:240px;height:300px;z-index:6;"><img src="images/photography/detail/detail_1.jpg" alt="作品"><div class="card-label">创意静物</div></div>
+            <div class="gallery-float-card" style="left:12%;top:35%;width:200px;height:260px;z-index:7;"><img src="images/video/xiamen/xiamen_1.jpg" alt="作品"><div class="card-label">厦门的声音</div></div>
+            <div class="gallery-float-card" style="left:45%;top:30%;width:190px;height:250px;z-index:2;"><img src="images/photography/urban/urban_3.jpg" alt="作品"><div class="card-label">黑白通道</div></div>
+            <div class="gallery-float-card" style="left:68%;top:28%;width:170px;height:220px;z-index:9;"><img src="images/video/basketball/basketball_1.jpg" alt="作品"><div class="card-label">篮球赛事</div></div>
+            <div class="gallery-float-card" style="left:88%;top:8%;width:160px;height:210px;z-index:1;"><img src="images/photography/landscape/landscape_2.jpg" alt="作品"><div class="card-label">落日剪影</div></div>
+            <div class="gallery-float-card" style="left:30%;top:40%;width:210px;height:270px;z-index:10;"><img src="images/ads/ad_1.jpg" alt="作品"><div class="card-label">赤尾广告</div></div>
         </div>
     </section>
 
@@ -509,7 +638,7 @@
             <div class="portfolio-horiz-track" id="horizTrack">
 
                 <!-- Photography: Landscape -->
-                <div class="h-card size-tall" data-category="photo-landscape" data-index="0" onclick="openModal('photo-landscape', 0)">
+                <div class="h-card size-wide" data-category="photo-landscape" data-index="0" onclick="openModal('photo-landscape', 0)">
                     <div class="h-card-media">
                         <img src="images/photography/landscape/landscape_1.jpg" alt="风光自然">
                     </div>
@@ -554,7 +683,7 @@
                 </div>
 
                 <!-- Photography: Nature -->
-                <div class="h-card size-small" data-category="photo-nature" data-index="0" onclick="openModal('photo-nature', 0)">
+                <div class="h-card size-medium" data-category="photo-nature" data-index="0" onclick="openModal('photo-nature', 0)">
                     <div class="h-card-media">
                         <img src="images/photography/nature/nature_1.jpg" alt="自然细节">
                     </div>
@@ -599,7 +728,7 @@
                 </div>
 
                 <!-- Photography: Detail -->
-                <div class="h-card size-medium" data-category="photo-detail" data-index="0" onclick="openModal('photo-detail', 0)">
+                <div class="h-card size-wide" data-category="photo-detail" data-index="0" onclick="openModal('photo-detail', 0)">
                     <div class="h-card-media">
                         <img src="images/photography/detail/detail_1.jpg" alt="创意静物">
                     </div>
@@ -717,7 +846,7 @@
                 </div>
 
                 <!-- Photography: Landscape 2 -->
-                <div class="h-card size-medium" data-category="photo-landscape" data-index="0" onclick="openModal('photo-landscape', 0)">
+                <div class="h-card size-wide" data-category="photo-landscape" data-index="0" onclick="openModal('photo-landscape', 0)">
                     <div class="h-card-media">
                         <img src="images/photography/landscape/landscape_2.jpg" alt="落日剪影">
                     </div>
@@ -743,7 +872,7 @@
                 </div>
 
                 <!-- Photography: Nature 2 -->
-                <div class="h-card size-wide" data-category="photo-nature" data-index="0" onclick="openModal('photo-nature', 0)">
+                <div class="h-card size-medium" data-category="photo-nature" data-index="0" onclick="openModal('photo-nature', 0)">
                     <div class="h-card-media">
                         <img src="images/photography/nature/nature_2.jpg" alt="山野风光">
                     </div>
@@ -756,7 +885,7 @@
                 </div>
 
                 <!-- Photography: Detail 2 -->
-                <div class="h-card size-tall" data-category="photo-detail" data-index="0" onclick="openModal('photo-detail', 0)">
+                <div class="h-card size-wide" data-category="photo-detail" data-index="0" onclick="openModal('photo-detail', 0)">
                     <div class="h-card-media">
                         <img src="images/photography/detail/detail_2.jpg" alt="创意静物">
                     </div>
@@ -811,6 +940,7 @@
                 <div class="skill-tags">
                     <span class="skill-tag">Premiere Pro</span>
                     <span class="skill-tag">Final Cut</span>
+                    <span class="skill-tag">达芬奇</span>
                     <span class="skill-tag">剪映</span>
                     <span class="skill-tag">分镜脚本</span>
                 </div>
@@ -839,6 +969,7 @@
                     <span class="skill-tag">小红书</span>
                     <span class="skill-tag">抖音</span>
                     <span class="skill-tag">公众号</span>
+                    <span class="skill-tag">视频号</span>
                     <span class="skill-tag">秀米排版</span>
                 </div>
             </div>
@@ -848,7 +979,7 @@
                     <span class="skill-tag">AI辅助创作</span>
                     <span class="skill-tag">小云雀</span>
                     <span class="skill-tag">Minimax</span>
-                    <span class="skill-tag">智能剪辑</span>
+                    <span class="skill-tag">MiMo</span>
                 </div>
             </div>
             <div class="skill-card fade-in">
@@ -886,10 +1017,25 @@
         </div>
     </section>
 
+    <!-- QR Code Section -->
+    <section class="qrcode-section">
+        <h2 class="section-title fade-in">查看详细作品</h2>
+        <p class="section-desc fade-in">扫码百度网盘查看完整作品集，包含高清原图与完整视频。</p>
+        <div class="qrcode-card fade-in">
+            <img src="images/qrcode/baidu_pan_qr.png" alt="百度网盘二维码">
+            <p>百度网盘扫码查看<br>完整作品集 & 项目详情</p>
+            <div class="scan-hint">📱 Scan to View</div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <p>© 2026 张琳 · 厦门大学 · 新闻传播学</p>
     </footer>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
     <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay">
@@ -912,6 +1058,7 @@
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
 
     <script>
         // ====== PORTFOLIO DATA (for modal) ======
@@ -1138,6 +1285,84 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ====== FLOATING GALLERY (Draggable) ======
+        function initFloatingGallery() {
+            const container = document.getElementById('galleryShowcase');
+            if (!container) return;
+            const cards = container.querySelectorAll('.gallery-float-card');
+
+            // Make each card draggable
+            cards.forEach(card => {
+                Draggable.create(card, {
+                    bounds: container,
+                    inertia: true,
+                    cursor: 'grab',
+                    activeCursor: 'grabbing',
+                    onDrag: function() {
+                        // Bring dragged card to front
+                        card.style.zIndex = 200;
+                    },
+                    onDragEnd: function() {
+                        // Restore z-index after a delay
+                        setTimeout(() => {
+                            card.style.zIndex = card.dataset.originalZ || 5;
+                        }, 500);
+                    }
+                });
+                card.dataset.originalZ = card.style.zIndex || 5;
+            });
+
+            // Gentle floating animation
+            cards.forEach((card, i) => {
+                gsap.to(card, {
+                    y: `+=${10 + Math.random() * 15}`,
+                    rotation: (Math.random() - 0.5) * 3,
+                    duration: 3 + Math.random() * 2,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut',
+                    delay: i * 0.3
+                });
+            });
+        }
+        initFloatingGallery();
+
+        // ====== CUSTOM CURSOR ======
+        function initCursor() {
+            if (window.innerWidth <= 768) return; // Skip on mobile
+            const dot = document.getElementById('cursorDot');
+            const ring = document.getElementById('cursorRing');
+            if (!dot || !ring) return;
+
+            let mouseX = 0, mouseY = 0;
+            let ringX = 0, ringY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.left = mouseX - 4 + 'px';
+                dot.style.top = mouseY - 4 + 'px';
+            });
+
+            // Smooth ring follow
+            function animateRing() {
+                ringX += (mouseX - ringX) * 0.12;
+                ringY += (mouseY - ringY) * 0.12;
+                ring.style.left = ringX - 18 + 'px';
+                ring.style.top = ringY - 18 + 'px';
+                requestAnimationFrame(animateRing);
+            }
+            animateRing();
+
+            // Hover effect on interactive elements
+            const interactives = document.querySelectorAll('a, button, .card, .h-card, .gallery-float-card, .skill-card, .contact-item');
+            interactives.forEach(el => {
+                el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+                el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+            });
+        }
+        initCursor();
 
         // ====== SMOOTH SCROLL NAV ======
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
