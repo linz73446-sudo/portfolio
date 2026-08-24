@@ -447,23 +447,113 @@
 
         /* ====== INTERACTIVE CURSOR ====== */
         .cursor-dot {
-            position: fixed; width: 8px; height: 8px;
+            position: fixed; width: 6px; height: 6px;
             background: var(--accent); border-radius: 50%;
             pointer-events: none; z-index: 9998;
-            transition: transform 0.15s ease-out;
+            transition: transform 0.1s ease-out, width 0.25s cubic-bezier(0.16,1,0.3,1), height 0.25s cubic-bezier(0.16,1,0.3,1), background 0.2s;
             mix-blend-mode: difference;
+        }
+        .cursor-dot.expanded {
+            width: 48px; height: 48px;
+            background: rgba(167,139,250,0.08);
+            border: 1px solid rgba(167,139,250,0.3);
         }
         .cursor-ring {
-            position: fixed; width: 36px; height: 36px;
-            border: 1.5px solid rgba(167,139,250,0.5); border-radius: 50%;
+            position: fixed; width: 28px; height: 28px;
+            border: 1px solid rgba(167,139,250,0.25); border-radius: 50%;
             pointer-events: none; z-index: 9997;
-            transition: width 0.3s, height 0.3s, border-color 0.3s;
+            transition: width 0.35s cubic-bezier(0.16,1,0.3,1), height 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, opacity 0.3s;
             mix-blend-mode: difference;
         }
-        .cursor-ring.hover {
-            width: 56px; height: 56px;
-            border-color: var(--accent);
+        .cursor-ring.hidden { opacity: 0; width: 6px; height: 6px; }
+
+        /* ====== FILM GRAIN OVERLAY ====== */
+        .grain-overlay {
+            position: fixed; inset: 0; z-index: 9996;
+            pointer-events: none; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 128px 128px;
+            animation: grainShift 0.4s steps(3) infinite;
         }
+        @keyframes grainShift {
+            0% { transform: translate(0,0); }
+            33% { transform: translate(-1px,1px); }
+            66% { transform: translate(1px,-1px); }
+            100% { transform: translate(0,0); }
+        }
+
+        /* ====== MARQUEE TEXT ====== */
+        .marquee-section {
+            padding: 32px 0;
+            overflow: hidden;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .marquee-track {
+            display: flex; width: max-content;
+            animation: marqueeScroll 25s linear infinite;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+        .marquee-text {
+            font-size: clamp(28px, 4.5vw, 52px);
+            font-weight: 800; letter-spacing: -0.02em;
+            white-space: nowrap; padding: 0 32px;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+            transition: -webkit-text-stroke 0.3s;
+        }
+        .marquee-text:nth-child(even) {
+            color: rgba(255,255,255,0.04);
+            -webkit-text-stroke: none;
+        }
+        .marquee-section:hover .marquee-text {
+            -webkit-text-stroke: 1px rgba(167,139,250,0.25);
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ====== HORIZONTAL SCROLL GALLERY ====== */
+        .h-gallery-section {
+            padding: 80px 0 60px;
+            overflow: hidden;
+        }
+        .h-gallery-header {
+            padding: 0 50px 32px;
+        }
+        .h-gallery-header .section-label {
+            font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 12px; font-weight: 500;
+        }
+        .h-gallery-header .section-title {
+            font-size: clamp(24px, 3.5vw, 38px); font-weight: 700; letter-spacing: -0.03em;
+        }
+        .h-gallery-track {
+            display: flex; gap: 20px; padding: 0 50px;
+            will-change: transform;
+        }
+        .h-gallery-item {
+            flex-shrink: 0; width: 340px; height: 230px;
+            border-radius: 14px; overflow: hidden;
+            position: relative; cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: border-color 0.3s;
+        }
+        .h-gallery-item:hover { border-color: rgba(167,139,250,0.3); }
+        .h-gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .h-gallery-item:hover img { transform: scale(1.05); }
+        .h-gallery-item .h-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%);
+            opacity: 0; transition: opacity 0.4s;
+            display: flex; align-items: flex-end; padding: 18px;
+        }
+        .h-gallery-item:hover .h-overlay { opacity: 1; }
+        .h-overlay span { font-size: 14px; font-weight: 600; color: #fff; }
 
         /* ====== ANIMATIONS ====== */
         .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -853,6 +943,43 @@
     </div>
     </div>
 
+    <!-- Marquee Text -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-text">Photography</span>
+            <span class="marquee-text">影视制作</span>
+            <span class="marquee-text">Visual Design</span>
+            <span class="marquee-text">品牌策划</span>
+            <span class="marquee-text">Content Creation</span>
+            <span class="marquee-text">新媒体运营</span>
+            <!-- Duplicate -->
+            <span class="marquee-text">Photography</span>
+            <span class="marquee-text">影视制作</span>
+            <span class="marquee-text">Visual Design</span>
+            <span class="marquee-text">品牌策划</span>
+            <span class="marquee-text">Content Creation</span>
+            <span class="marquee-text">新媒体运营</span>
+        </div>
+    </div>
+
+    <!-- Horizontal Scroll Gallery -->
+    <section class="h-gallery-section">
+        <div class="h-gallery-header fade-in">
+            <div class="section-label">Highlights</div>
+            <h2 class="section-title">精选瞬间</h2>
+        </div>
+        <div class="h-gallery-track" id="hGalleryTrack">
+            <div class="h-gallery-item"><img src="images/photography/landscape/landscape_3.jpg" alt=""><div class="h-overlay"><span>风光摄影</span></div></div>
+            <div class="h-gallery-item"><img src="images/photography/urban/urban_6.jpg" alt=""><div class="h-overlay"><span>城市建筑</span></div></div>
+            <div class="h-gallery-item"><img src="images/photography/street/street_1.png" alt=""><div class="h-overlay"><span>街头摄影</span></div></div>
+            <div class="h-gallery-item"><img src="images/photography/portrait/portrait_1.jpg" alt=""><div class="h-overlay"><span>人像摄影</span></div></div>
+            <div class="h-gallery-item"><img src="images/photography/detail/detail_3.png" alt=""><div class="h-overlay"><span>创意静物</span></div></div>
+            <div class="h-gallery-item"><img src="images/photography/landscape/landscape_5.jpg" alt=""><div class="h-overlay"><span>风光摄影</span></div></div>
+            <div class="h-gallery-item"><img src="images/photography/urban/urban_9.jpg" alt=""><div class="h-overlay"><span>城市建筑</span></div></div>
+            <div class="h-gallery-item"><img src="images/photography/street/street_4.jpg" alt=""><div class="h-overlay"><span>街头摄影</span></div></div>
+        </div>
+    </section>
+
     <!-- About / Timeline -->
     <section id="about" class="timeline-section">
         <h2 class="section-title fade-in">成长路径</h2>
@@ -1174,6 +1301,9 @@
         </div>
     </div>
 
+    <!-- Film Grain Overlay -->
+    <div class="grain-overlay"></div>
+
     <!-- Custom Cursor -->
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
@@ -1424,41 +1554,102 @@
             { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.8 }
         );
 
-        // ====== CUSTOM CURSOR ======
+        // ====== ENHANCED CURSOR ======
         function initCursor() {
-            if (window.innerWidth <= 768) return; // Skip on mobile
+            if (window.innerWidth <= 768) return;
             const dot = document.getElementById('cursorDot');
             const ring = document.getElementById('cursorRing');
             if (!dot || !ring) return;
-
-            let mouseX = 0, mouseY = 0;
-            let ringX = 0, ringY = 0;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                dot.style.left = mouseX - 4 + 'px';
-                dot.style.top = mouseY - 4 + 'px';
+            let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+            document.addEventListener('mousemove', e => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                dot.style.left = mouseX - 3 + 'px';
+                dot.style.top = mouseY - 3 + 'px';
             });
-
-            // Smooth ring follow
             function animateRing() {
                 ringX += (mouseX - ringX) * 0.12;
                 ringY += (mouseY - ringY) * 0.12;
-                ring.style.left = ringX - 18 + 'px';
-                ring.style.top = ringY - 18 + 'px';
+                ring.style.left = ringX - 14 + 'px';
+                ring.style.top = ringY - 14 + 'px';
                 requestAnimationFrame(animateRing);
             }
             animateRing();
-
-            // Hover effect on interactive elements
-            const interactives = document.querySelectorAll('a, button, .card, .h-card, .skill-card, .contact-item, .ticker-item');
+            const interactives = document.querySelectorAll('a, button, .category-card, .ticker-item, .h-gallery-item, .skill-card, .contact-item, .btn');
             interactives.forEach(el => {
-                el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-                el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+                el.addEventListener('mouseenter', () => { dot.classList.add('expanded'); ring.classList.add('hidden'); });
+                el.addEventListener('mouseleave', () => { dot.classList.remove('expanded'); ring.classList.remove('hidden'); });
             });
         }
         initCursor();
+
+        // ====== HORIZONTAL SCROLL GALLERY ======
+        (function() {
+            const track = document.getElementById('hGalleryTrack');
+            if (!track) return;
+            const section = track.closest('.h-gallery-section');
+            let currentX = 0, targetX = 0;
+            const maxScroll = track.scrollWidth - section.offsetWidth;
+            window.addEventListener('scroll', () => {
+                const rect = section.getBoundingClientRect();
+                const progress = Math.max(0, Math.min(1, -rect.top / (rect.height - window.innerHeight)));
+                targetX = -progress * maxScroll;
+            });
+            function animate() {
+                currentX += (targetX - currentX) * 0.08;
+                track.style.transform = `translateX(${currentX}px)`;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ====== TEXT SCRAMBLE FOR SECTION TITLES ======
+        class TextScramble {
+            constructor(el) { this.el = el; this.chars = '!<>-_\\/[]{}—=+*^?#________'; this.update = this.update.bind(this); }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise(resolve => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 20);
+                    const end = start + Math.floor(Math.random() * 20);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '', complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) { complete++; output += to; }
+                    else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) { char = this.chars[Math.floor(Math.random() * this.chars.length)]; this.queue[i].char = char; }
+                        output += `<span style="color:var(--accent);opacity:0.6">${char}</span>`;
+                    } else { output += from; }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) { this.resolve(); } else { this.frame = requestAnimationFrame(this.update); this.frame++; }
+            }
+        }
+        // Apply scramble to section titles on scroll
+        document.querySelectorAll('.section-title').forEach(el => {
+            const originalText = el.textContent;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !el.dataset.scrambled) {
+                        el.dataset.scrambled = 'true';
+                        const fx = new TextScramble(el);
+                        fx.setText(originalText);
+                    }
+                });
+            }, { threshold: 0.5 });
+            observer.observe(el);
+        });
 
         // ====== PHONE CALL PANEL ======
         function toggleCallPanel() {
