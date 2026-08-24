@@ -584,57 +584,74 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* ====== GRADIENT TRANSITIONS (Dynamic waterfall effect) ====== */
+        /* ====== PREMIUM SCROLL TRANSITIONS ====== */
         .section-transition {
-            height: 200px;
+            height: 120px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .section-transition.transition-dark-to-light {
-            background: linear-gradient(to bottom, #000 0%, rgba(15,15,25,1) 100%);
+            background: linear-gradient(to bottom, #000, rgba(10,10,15,1));
         }
         .section-transition.transition-light-to-dark {
-            background: linear-gradient(to bottom, rgba(15,15,25,1) 0%, #000 100%);
+            background: linear-gradient(to bottom, rgba(10,10,15,1), #000);
         }
-        .waterfall-container {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
+        .transition-line {
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(167,139,250,0.5), rgba(96,165,250,0.4), transparent);
+            transition: none;
         }
-        .waterfall-line {
-            position: absolute;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(167,139,250,0.4), rgba(96,165,250,0.3), transparent);
-            animation: waterfallDrop var(--duration) linear infinite;
-            animation-delay: var(--delay);
-            opacity: 0;
+        .transition-line.revealed {
+            animation: drawLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        @keyframes waterfallDrop {
-            0% { transform: translateY(-100%); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(200px); opacity: 0; }
+        @keyframes drawLine {
+            0% { width: 0; opacity: 0; }
+            30% { opacity: 1; }
+            100% { width: 80%; opacity: 1; }
         }
-        .waterfall-glow {
-            position: absolute;
+        .transition-dot {
+            width: 4px; height: 4px;
             border-radius: 50%;
-            filter: blur(80px);
-            animation: glowPulse 4s ease-in-out infinite alternate;
+            background: rgba(167,139,250,0.6);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            box-shadow: 0 0 12px rgba(167,139,250,0.4);
         }
-        .waterfall-glow-1 {
-            width: 400px; height: 200px;
-            background: rgba(167,139,250,0.08);
-            left: 10%; top: 20%;
+        .transition-dot.revealed {
+            animation: dotPulse 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
         }
-        .waterfall-glow-2 {
-            width: 300px; height: 150px;
-            background: rgba(96,165,250,0.06);
-            right: 15%; bottom: 10%;
-            animation-delay: -2s;
+        @keyframes dotPulse {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+            100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
         }
-        @keyframes glowPulse {
-            0% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.15); }
+
+        /* ====== SECTION REVEAL (parallax fade-in) ====== */
+        .portfolio-category,
+        .timeline-section,
+        .featured-section,
+        .skills-section,
+        .contact-section,
+        .qrcode-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .portfolio-category.revealed,
+        .timeline-section.revealed,
+        .featured-section.revealed,
+        .skills-section.revealed,
+        .contact-section.revealed,
+        .qrcode-section.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ====== PHONE CALL INTERACTION ====== */
@@ -829,18 +846,9 @@
     </div>
 
     <div class="section-transition transition-dark-to-light">
-        <div class="waterfall-container">
-            <div class="waterfall-line" style="left:8%;height:55px;--duration:2.3s;--delay:0s;"></div>
-            <div class="waterfall-line" style="left:18%;height:75px;--duration:2.8s;--delay:0.4s;"></div>
-            <div class="waterfall-line" style="left:30%;height:50px;--duration:2.1s;--delay:0.9s;"></div>
-            <div class="waterfall-line" style="left:42%;height:85px;--duration:3.1s;--delay:0.2s;"></div>
-            <div class="waterfall-line" style="left:55%;height:60px;--duration:2.5s;--delay:0.7s;"></div>
-            <div class="waterfall-line" style="left:68%;height:70px;--duration:2.9s;--delay:1.1s;"></div>
-            <div class="waterfall-line" style="left:80%;height:45px;--duration:2.2s;--delay:0.5s;"></div>
-            <div class="waterfall-line" style="left:92%;height:65px;--duration:2.7s;--delay:0.8s;"></div>
-            <div class="waterfall-glow waterfall-glow-1"></div>
-            <div class="waterfall-glow waterfall-glow-2"></div>
-        </div>
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+    </div>
     </div>
 
     <!-- About / Timeline -->
@@ -876,18 +884,9 @@
     </section>
 
     <div class="section-transition transition-dark-to-light">
-        <div class="waterfall-container">
-            <div class="waterfall-line" style="left:8%;height:55px;--duration:2.3s;--delay:0s;"></div>
-            <div class="waterfall-line" style="left:18%;height:75px;--duration:2.8s;--delay:0.4s;"></div>
-            <div class="waterfall-line" style="left:30%;height:50px;--duration:2.1s;--delay:0.9s;"></div>
-            <div class="waterfall-line" style="left:42%;height:85px;--duration:3.1s;--delay:0.2s;"></div>
-            <div class="waterfall-line" style="left:55%;height:60px;--duration:2.5s;--delay:0.7s;"></div>
-            <div class="waterfall-line" style="left:68%;height:70px;--duration:2.9s;--delay:1.1s;"></div>
-            <div class="waterfall-line" style="left:80%;height:45px;--duration:2.2s;--delay:0.5s;"></div>
-            <div class="waterfall-line" style="left:92%;height:65px;--duration:2.7s;--delay:0.8s;"></div>
-            <div class="waterfall-glow waterfall-glow-1"></div>
-            <div class="waterfall-glow waterfall-glow-2"></div>
-        </div>
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+    </div>
     </div>
 
     <!-- Featured Section -->
@@ -1042,18 +1041,9 @@
     </section>
 
     <div class="section-transition transition-dark-to-light">
-        <div class="waterfall-container">
-            <div class="waterfall-line" style="left:8%;height:55px;--duration:2.3s;--delay:0s;"></div>
-            <div class="waterfall-line" style="left:18%;height:75px;--duration:2.8s;--delay:0.4s;"></div>
-            <div class="waterfall-line" style="left:30%;height:50px;--duration:2.1s;--delay:0.9s;"></div>
-            <div class="waterfall-line" style="left:42%;height:85px;--duration:3.1s;--delay:0.2s;"></div>
-            <div class="waterfall-line" style="left:55%;height:60px;--duration:2.5s;--delay:0.7s;"></div>
-            <div class="waterfall-line" style="left:68%;height:70px;--duration:2.9s;--delay:1.1s;"></div>
-            <div class="waterfall-line" style="left:80%;height:45px;--duration:2.2s;--delay:0.5s;"></div>
-            <div class="waterfall-line" style="left:92%;height:65px;--duration:2.7s;--delay:0.8s;"></div>
-            <div class="waterfall-glow waterfall-glow-1"></div>
-            <div class="waterfall-glow waterfall-glow-2"></div>
-        </div>
+        <div class="transition-line"></div>
+        <div class="transition-dot"></div>
+    </div>
     </div>
 
     <!-- Skills Section -->
@@ -1402,23 +1392,35 @@
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 
-        // ====== GSAP SCROLL-TRIGGERED TRANSITION REVEAL ======
-        gsap.utils.toArray('.section-transition').forEach((el) => {
-            gsap.fromTo(el.querySelector('.waterfall-glow-1'),
-                { x: -80, opacity: 0 },
-                {
-                    x: 0, opacity: 1, duration: 1.5, ease: 'power2.out',
-                    scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 20%', scrub: 1 }
+        // ====== PREMIUM SCROLL REVEALS ======
+        // Reveal transition lines on scroll
+        const lineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const line = entry.target.querySelector('.transition-line');
+                    const dot = entry.target.querySelector('.transition-dot');
+                    if (line) line.classList.add('revealed');
+                    if (dot) dot.classList.add('revealed');
                 }
-            );
-            gsap.fromTo(el.querySelector('.waterfall-glow-2'),
-                { x: 80, opacity: 0 },
-                {
-                    x: 0, opacity: 1, duration: 1.5, ease: 'power2.out',
-                    scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 20%', scrub: 1 }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.section-transition').forEach(el => lineObserver.observe(el));
+
+        // Parallax section reveals with stagger
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
                 }
-            );
-        });
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.portfolio-category, .timeline-section, .featured-section, .skills-section, .contact-section, .qrcode-section').forEach(el => sectionObserver.observe(el));
+
+        // GSAP smooth parallax for hero and sections
+        gsap.fromTo('.hero-content',
+            { y: 60, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.8 }
+        );
 
         // ====== CUSTOM CURSOR ======
         function initCursor() {
