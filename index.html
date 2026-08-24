@@ -551,25 +551,22 @@
         }
         .ticker-item {
             flex-shrink: 0;
-            width: 300px;
+            width: 320px;
             height: 200px;
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.08);
-            transform: rotate(-3deg);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            transform: rotate(-2.5deg) perspective(600px) rotateY(3deg);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.55), 0 5px 18px rgba(0,0,0,0.35);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
             cursor: pointer;
         }
         .ticker-item:nth-child(even) {
-            transform: rotate(2deg);
-        }
-        .ticker-item:nth-child(3n) {
-            transform: rotate(-1.5deg);
+            transform: rotate(2deg) perspective(600px) rotateY(-3deg);
         }
         .ticker-item:hover {
-            transform: rotate(0deg) translateY(-16px) scale(1.04);
-            box-shadow: 0 24px 60px rgba(167,139,250,0.25), 0 8px 24px rgba(0,0,0,0.4);
+            transform: rotate(0deg) translateY(-14px) scale(1.03);
+            box-shadow: 0 28px 60px rgba(167,139,250,0.2), 0 10px 28px rgba(0,0,0,0.45);
             z-index: 10;
         }
         .ticker-item img {
@@ -935,7 +932,7 @@
                 </div>
                 <div class="category-card" onclick="openVideoModal('BV1S38u6DEF3')">
                     <div class="category-card-img">
-                        <img src="https://i0.hdslb.com/bfs/archive/829c416efe57657dfc82fed0b7ca06c64f925351.jpg" alt="消息新闻" onerror="this.src='images/video/buofen/buofen_1.jpg'">
+                        <img src="images/video/xiaoxinwen/xiaoxinwen_1.jpg" alt="消息新闻">
                         <div class="card-play-icon"></div>
                     </div>
                     <div class="category-card-info"><h4>消息新闻</h4><span>新闻传播</span></div>
