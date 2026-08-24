@@ -991,6 +991,10 @@
                     <div class="category-card-img"><img src="images/ads/ad_1.jpg" alt="赤尾广告"></div>
                     <div class="category-card-info"><h4>赤尾避孕套平面广告</h4><span>3张</span></div>
                 </div>
+                <div class="category-card" onclick="openModal('ads', 1)">
+                    <div class="category-card-img"><img src="images/ads/ad_4.jpg" alt="厦大广播电台海报"></div>
+                    <div class="category-card-info"><h4>厦大广播电台海报</h4><span>1张</span></div>
+                </div>
             </div>
         </div>
 
@@ -1257,12 +1261,20 @@
                     meta: { '类型': '体育纪录片', '主题': '篮球赛事', '风格': '热血纪实', '元素': '运动+激情' }
                 }
             ],
-            ads: [{
-                title: '赤尾避孕套平面广告',
-                desc: '为赤尾品牌设计的平面广告作品，通过简洁有力的视觉语言，传达品牌的核心价值与产品特点。',
-                images: ['images/ads/ad_1.jpg', 'images/ads/ad_2.jpg', 'images/ads/ad_3.jpg'],
-                meta: { '类型': '平面广告', '品牌': '赤尾', '风格': '简洁现代', '工具': 'PS/AI' }
-            }],
+            ads: [
+                {
+                    title: '赤尾避孕套平面广告',
+                    desc: '为赤尾品牌设计的平面广告作品，通过简洁有力的视觉语言，传达品牌的核心价值与产品特点。',
+                    images: ['images/ads/ad_1.jpg', 'images/ads/ad_2.jpg', 'images/ads/ad_3.jpg'],
+                    meta: { '类型': '平面广告', '品牌': '赤尾', '风格': '简洁现代', '工具': 'PS/AI' }
+                },
+                {
+                    title: '厦大广播电台海报',
+                    desc: '为厦大广播电台设计的宣传海报，融合校园文化与广播元素，展现电台的品牌形象与活力。',
+                    images: ['images/ads/ad_4.jpg'],
+                    meta: { '类型': '海报设计', '品牌': '厦大广播电台', '风格': '校园活力', '工具': 'PS/AI' }
+                }
+            ],
             planning: [
                 {
                     title: '学院奖—郁美净策划案',
@@ -1375,7 +1387,8 @@
             const dots = document.getElementById('galleryDots');
             document.getElementById('modalTitle').textContent = '视频作品';
             document.getElementById('modalDesc').textContent = '点击播放观看视频';
-            container.innerHTML = `<div class="gallery-item" style="aspect-ratio:16/9;background:#111;"><iframe src="//player.bilibili.com/player.html?bvid=${bvid}&autoplay=1" allowfullscreen style="width:100%;height:100%;border:none;"></iframe></div>`;
+            container.innerHTML = `<div class="gallery-item" style="aspect-ratio:16/9;background:#111;display:flex;align-items:center;justify-content:center;"><iframe src="https://player.bilibili.com/player.html?bvid=${bvid}&autoplay=1&high_quality=1" allowfullscreen style="width:100%;height:100%;border:none;" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe></div>`;
+            container.style.transform = 'translateX(0)';
             dots.innerHTML = '';
             document.getElementById('modalMeta').innerHTML = '';
             overlay.classList.add('active');
