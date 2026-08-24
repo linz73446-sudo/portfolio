@@ -584,48 +584,57 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* ====== GRADIENT TRANSITIONS (Reference-style scroll-triggered) ====== */
+        /* ====== GRADIENT TRANSITIONS (Dynamic waterfall effect) ====== */
         .section-transition {
-            height: 160px;
+            height: 200px;
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-        .section-transition.visible {
-            opacity: 1;
         }
         .section-transition.transition-dark-to-light {
-            background: linear-gradient(to bottom, #000 0%, rgba(167,139,250,0.06) 30%, rgba(96,165,250,0.04) 60%, rgba(255,255,255,0.03) 100%);
+            background: linear-gradient(to bottom, #000 0%, rgba(15,15,25,1) 100%);
         }
         .section-transition.transition-light-to-dark {
-            background: linear-gradient(to bottom, rgba(255,255,255,0.03) 0%, rgba(96,165,250,0.04) 30%, rgba(167,139,250,0.06) 70%, #000 100%);
+            background: linear-gradient(to bottom, rgba(15,15,25,1) 0%, #000 100%);
         }
-        .section-transition .gradient-orb {
+        .waterfall-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+        .waterfall-line {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(167,139,250,0.4), rgba(96,165,250,0.3), transparent);
+            animation: waterfallDrop var(--duration) linear infinite;
+            animation-delay: var(--delay);
+            opacity: 0;
+        }
+        @keyframes waterfallDrop {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(200px); opacity: 0; }
+        }
+        .waterfall-glow {
             position: absolute;
             border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0;
-            transition: opacity 1s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: blur(80px);
+            animation: glowPulse 4s ease-in-out infinite alternate;
         }
-        .section-transition.visible .gradient-orb {
-            opacity: 1;
+        .waterfall-glow-1 {
+            width: 400px; height: 200px;
+            background: rgba(167,139,250,0.08);
+            left: 10%; top: 20%;
         }
-        .section-transition .gradient-orb-1 {
-            width: 300px; height: 300px;
-            background: rgba(167,139,250,0.12);
-            left: 20%; top: -50px;
+        .waterfall-glow-2 {
+            width: 300px; height: 150px;
+            background: rgba(96,165,250,0.06);
+            right: 15%; bottom: 10%;
+            animation-delay: -2s;
         }
-        .section-transition.visible .gradient-orb-1 {
-            transform: translateX(40px);
-        }
-        .section-transition .gradient-orb-2 {
-            width: 200px; height: 200px;
-            background: rgba(96,165,250,0.1);
-            right: 25%; bottom: -40px;
-        }
-        .section-transition.visible .gradient-orb-2 {
-            transform: translateX(-30px);
+        @keyframes glowPulse {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.15); }
         }
 
         /* ====== PHONE CALL INTERACTION ====== */
@@ -795,29 +804,43 @@
     <!-- Image Ticker -->
     <div class="ticker-section">
         <div class="ticker-track" id="tickerTrack">
-            <div class="ticker-item"><img src="images/photography/landscape/landscape_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/photography/urban/urban_1.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/landscape/landscape_3.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/urban/urban_6.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/street/street_1.png" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/detail/detail_3.png" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/portrait/portrait_1.jpg" alt=""></div>
             <div class="ticker-item"><img src="images/video/buofen/buofen_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/photography/nature/nature_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/photography/detail/detail_1.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/landscape/landscape_5.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/urban/urban_9.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/street/street_4.jpg" alt=""></div>
             <div class="ticker-item"><img src="images/ads/ad_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/video/xiamen/xiamen_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/photography/urban/urban_3.jpg" alt=""></div>
             <!-- Duplicate for seamless loop -->
-            <div class="ticker-item"><img src="images/photography/landscape/landscape_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/photography/urban/urban_1.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/landscape/landscape_3.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/urban/urban_6.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/street/street_1.png" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/detail/detail_3.png" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/portrait/portrait_1.jpg" alt=""></div>
             <div class="ticker-item"><img src="images/video/buofen/buofen_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/photography/nature/nature_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/photography/detail/detail_1.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/landscape/landscape_5.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/urban/urban_9.jpg" alt=""></div>
+            <div class="ticker-item"><img src="images/photography/street/street_4.jpg" alt=""></div>
             <div class="ticker-item"><img src="images/ads/ad_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/video/xiamen/xiamen_1.jpg" alt=""></div>
-            <div class="ticker-item"><img src="images/photography/urban/urban_3.jpg" alt=""></div>
         </div>
     </div>
 
     <div class="section-transition transition-dark-to-light">
-        <div class="gradient-orb gradient-orb-1"></div>
-        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="waterfall-container">
+            <div class="waterfall-line" style="left:8%;height:55px;--duration:2.3s;--delay:0s;"></div>
+            <div class="waterfall-line" style="left:18%;height:75px;--duration:2.8s;--delay:0.4s;"></div>
+            <div class="waterfall-line" style="left:30%;height:50px;--duration:2.1s;--delay:0.9s;"></div>
+            <div class="waterfall-line" style="left:42%;height:85px;--duration:3.1s;--delay:0.2s;"></div>
+            <div class="waterfall-line" style="left:55%;height:60px;--duration:2.5s;--delay:0.7s;"></div>
+            <div class="waterfall-line" style="left:68%;height:70px;--duration:2.9s;--delay:1.1s;"></div>
+            <div class="waterfall-line" style="left:80%;height:45px;--duration:2.2s;--delay:0.5s;"></div>
+            <div class="waterfall-line" style="left:92%;height:65px;--duration:2.7s;--delay:0.8s;"></div>
+            <div class="waterfall-glow waterfall-glow-1"></div>
+            <div class="waterfall-glow waterfall-glow-2"></div>
+        </div>
     </div>
 
     <!-- About / Timeline -->
@@ -853,8 +876,18 @@
     </section>
 
     <div class="section-transition transition-dark-to-light">
-        <div class="gradient-orb gradient-orb-1"></div>
-        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="waterfall-container">
+            <div class="waterfall-line" style="left:8%;height:55px;--duration:2.3s;--delay:0s;"></div>
+            <div class="waterfall-line" style="left:18%;height:75px;--duration:2.8s;--delay:0.4s;"></div>
+            <div class="waterfall-line" style="left:30%;height:50px;--duration:2.1s;--delay:0.9s;"></div>
+            <div class="waterfall-line" style="left:42%;height:85px;--duration:3.1s;--delay:0.2s;"></div>
+            <div class="waterfall-line" style="left:55%;height:60px;--duration:2.5s;--delay:0.7s;"></div>
+            <div class="waterfall-line" style="left:68%;height:70px;--duration:2.9s;--delay:1.1s;"></div>
+            <div class="waterfall-line" style="left:80%;height:45px;--duration:2.2s;--delay:0.5s;"></div>
+            <div class="waterfall-line" style="left:92%;height:65px;--duration:2.7s;--delay:0.8s;"></div>
+            <div class="waterfall-glow waterfall-glow-1"></div>
+            <div class="waterfall-glow waterfall-glow-2"></div>
+        </div>
     </div>
 
     <!-- Featured Section -->
@@ -885,25 +918,29 @@
                 <div class="category-icon">📷</div>
                 <div class="category-info">
                     <h3 class="category-title">摄影作品</h3>
-                    <p class="category-desc">用镜头记录世界，从风光自然到城市建筑，从细腻静物到人文瞬间，80+摄影作品涵盖多种题材与风格。每一张照片都是一次对光影、构图与色彩的探索。</p>
+                    <p class="category-desc">用镜头记录世界，从风光自然到城市建筑，从街头人文到细腻静物，从创意静物到人像情绪，涵盖多种题材与风格。每一张照片都是一次对光影、构图与色彩的探索。</p>
                 </div>
             </div>
             <div class="category-cards">
                 <div class="category-card" onclick="openModal('photo-landscape', 0)">
-                    <div class="category-card-img"><img src="images/photography/landscape/landscape_1.jpg" alt="风光自然"></div>
-                    <div class="category-card-info"><h4>风光自然</h4><span>2张</span></div>
+                    <div class="category-card-img"><img src="images/photography/landscape/landscape_3.jpg" alt="风光自然"></div>
+                    <div class="category-card-info"><h4>风光自然</h4><span>9张</span></div>
                 </div>
                 <div class="category-card" onclick="openModal('photo-urban', 0)">
-                    <div class="category-card-img"><img src="images/photography/urban/urban_1.jpg" alt="城市建筑"></div>
-                    <div class="category-card-info"><h4>城市建筑</h4><span>5张</span></div>
+                    <div class="category-card-img"><img src="images/photography/urban/urban_6.jpg" alt="城市建筑"></div>
+                    <div class="category-card-info"><h4>城市建筑</h4><span>10张</span></div>
                 </div>
-                <div class="category-card" onclick="openModal('photo-nature', 0)">
-                    <div class="category-card-img"><img src="images/photography/nature/nature_1.jpg" alt="自然细节"></div>
-                    <div class="category-card-info"><h4>自然细节</h4><span>2张</span></div>
+                <div class="category-card" onclick="openModal('photo-street', 0)">
+                    <div class="category-card-img"><img src="images/photography/street/street_1.png" alt="街头摄影"></div>
+                    <div class="category-card-info"><h4>街头摄影</h4><span>5张</span></div>
                 </div>
                 <div class="category-card" onclick="openModal('photo-detail', 0)">
-                    <div class="category-card-img"><img src="images/photography/detail/detail_1.jpg" alt="创意静物"></div>
-                    <div class="category-card-info"><h4>创意静物</h4><span>2张</span></div>
+                    <div class="category-card-img"><img src="images/photography/detail/detail_3.png" alt="创意静物"></div>
+                    <div class="category-card-info"><h4>创意静物</h4><span>9张</span></div>
+                </div>
+                <div class="category-card" onclick="openModal('photo-portrait', 0)">
+                    <div class="category-card-img"><img src="images/photography/portrait/portrait_1.jpg" alt="人像摄影"></div>
+                    <div class="category-card-info"><h4>人像摄影</h4><span>6张</span></div>
                 </div>
             </div>
         </div>
@@ -919,7 +956,7 @@
             </div>
             <div class="category-cards">
                 <div class="category-card" onclick="openVideoModal('BV1MV8u6nEz9')">
-                    <div class="category-card-img"><img src="images/video/xiamen/xiamen_1.jpg" alt="厦门的声音"><div class="card-play-icon"></div></div>
+                    <div class="category-card-img"><img src="images/video/xiamen/xiamen_cover.jpg" alt="厦门的声音"><div class="card-play-icon"></div></div>
                     <div class="category-card-info"><h4>厦门的声音</h4><span>纪录片</span></div>
                 </div>
                 <div class="category-card" onclick="openVideoModal('BV1UV8u6JEwN')">
@@ -1001,8 +1038,18 @@
     </section>
 
     <div class="section-transition transition-dark-to-light">
-        <div class="gradient-orb gradient-orb-1"></div>
-        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="waterfall-container">
+            <div class="waterfall-line" style="left:8%;height:55px;--duration:2.3s;--delay:0s;"></div>
+            <div class="waterfall-line" style="left:18%;height:75px;--duration:2.8s;--delay:0.4s;"></div>
+            <div class="waterfall-line" style="left:30%;height:50px;--duration:2.1s;--delay:0.9s;"></div>
+            <div class="waterfall-line" style="left:42%;height:85px;--duration:3.1s;--delay:0.2s;"></div>
+            <div class="waterfall-line" style="left:55%;height:60px;--duration:2.5s;--delay:0.7s;"></div>
+            <div class="waterfall-line" style="left:68%;height:70px;--duration:2.9s;--delay:1.1s;"></div>
+            <div class="waterfall-line" style="left:80%;height:45px;--duration:2.2s;--delay:0.5s;"></div>
+            <div class="waterfall-line" style="left:92%;height:65px;--duration:2.7s;--delay:0.8s;"></div>
+            <div class="waterfall-glow waterfall-glow-1"></div>
+            <div class="waterfall-glow waterfall-glow-2"></div>
+        </div>
     </div>
 
     <!-- Skills Section -->
@@ -1163,26 +1210,32 @@
             'photo-landscape': [{
                 title: '风光自然',
                 desc: '大自然的壮丽与细腻，用镜头定格天空、山水、光影的瞬间变化。云海翻涌的山峦与落日余晖中的剪影，展现自然之美的无限可能。',
-                images: ['images/photography/landscape/landscape_1.jpg', 'images/photography/landscape/landscape_2.jpg'],
+                images: ['images/photography/landscape/landscape_1.jpg', 'images/photography/landscape/landscape_2.jpg', 'images/photography/landscape/landscape_3.jpg', 'images/photography/landscape/landscape_4.jpg', 'images/photography/landscape/landscape_5.jpg', 'images/photography/landscape/landscape_6.jpg', 'images/photography/landscape/landscape_7.jpg', 'images/photography/landscape/landscape_8.jpg', 'images/photography/landscape/landscape_9.jpg'],
                 meta: { '类型': '风光摄影', '主题': '自然之美', '色彩': '丰富层次', '氛围': '宁静壮美' }
             }],
             'photo-urban': [{
                 title: '城市建筑',
                 desc: '古典与现代交融的城市建筑景观。从暖色调古典建筑到极简路灯，从黑白纵深通道到城市街景，展现建筑的多元美感。',
-                images: ['images/photography/urban/urban_1.jpg', 'images/photography/urban/urban_2.jpg', 'images/photography/urban/urban_3.jpg', 'images/photography/urban/urban_4.jpg', 'images/photography/urban/urban_5.jpg'],
+                images: ['images/photography/urban/urban_1.jpg', 'images/photography/urban/urban_2.jpg', 'images/photography/urban/urban_3.jpg', 'images/photography/urban/urban_4.jpg', 'images/photography/urban/urban_5.jpg', 'images/photography/urban/urban_6.jpg', 'images/photography/urban/urban_7.png', 'images/photography/urban/urban_8.jpg', 'images/photography/urban/urban_9.jpg', 'images/photography/urban/urban_10.jpg'],
                 meta: { '类型': '建筑摄影', '风格': '多元', '视角': '仰拍+平视', '后期': 'Lightroom' }
             }],
-            'photo-nature': [{
-                title: '自然细节',
-                desc: '捕捉自然中的细腻瞬间，从绿意盎然的山谷到郊野木栅栏后的山丘，展现大自然的宁静与治愈力量。',
-                images: ['images/photography/nature/nature_1.jpg', 'images/photography/nature/nature_2.jpg'],
-                meta: { '类型': '自然摄影', '主题': '细节之美', '氛围': '治愈宁静', '元素': '山丘·绿植' }
+            'photo-street': [{
+                title: '街头摄影',
+                desc: '街头巷尾的光影故事，捕捉城市中转瞬即逝的瞬间。从人群到建筑，从色彩到情绪，用镜头记录城市的脉搏。',
+                images: ['images/photography/street/street_1.png', 'images/photography/street/street_2.png', 'images/photography/street/street_3.jpg', 'images/photography/street/street_4.jpg', 'images/photography/street/street_5.jpg'],
+                meta: { '类型': '街头摄影', '主题': '城市瞬间', '风格': '纪实', '氛围': '真实生动' }
             }],
             'photo-detail': [{
                 title: '创意静物',
-                desc: '用镜头捕捉手工与生活中的小美好。草坪上的手工钩织向日葵，充满治愈感与手工温度。',
-                images: ['images/photography/detail/detail_1.jpg', 'images/photography/detail/detail_2.jpg'],
+                desc: '用镜头捕捉手工与生活中的小美好，从细腻纹理到色彩搭配，展现静物的治愈感与创意温度。',
+                images: ['images/photography/detail/detail_1.jpg', 'images/photography/detail/detail_2.jpg', 'images/photography/detail/detail_3.png', 'images/photography/detail/detail_4.png', 'images/photography/detail/detail_5.jpg', 'images/photography/detail/detail_6.jpg', 'images/photography/detail/detail_7.jpg', 'images/photography/detail/detail_8.jpg', 'images/photography/detail/detail_9.jpg'],
                 meta: { '类型': '静物摄影', '风格': '治愈清新', '主题': '手工创意', '色彩': '明快温暖' }
+            }],
+            'photo-portrait': [{
+                title: '人像摄影',
+                desc: '用镜头定格人物的神态与情绪，从自然光到人造光，从环境人像到特写，探索人像摄影的多元表达。',
+                images: ['images/photography/portrait/portrait_1.jpg', 'images/photography/portrait/portrait_2.jpg', 'images/photography/portrait/portrait_3.jpg', 'images/photography/portrait/portrait_4.jpg', 'images/photography/portrait/portrait_5.jpg', 'images/photography/portrait/portrait_6.jpg'],
+                meta: { '类型': '人像摄影', '主题': '人物情绪', '风格': '自然真实', '光线': '自然光+人造光' }
             }],
             video: [
                 {
@@ -1194,7 +1247,7 @@
                 {
                     title: '厦门的声音',
                     desc: '记录厦门城市的声音，通过声音与画面的结合，展现城市的活力与魅力。用镜头捕捉城市的每一个精彩瞬间。',
-                    images: ['images/video/xiamen/xiamen_1.jpg', 'images/video/xiamen/xiamen_2.jpg'],
+                    images: ['images/video/xiamen/xiamen_cover.jpg', 'images/video/xiamen/xiamen_1.jpg', 'images/video/xiamen/xiamen_2.jpg'],
                     meta: { '类型': '纪录片', '主题': '城市声音', '风格': '纪实', '元素': '声音+画面' }
                 },
                 {
@@ -1335,31 +1388,21 @@
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // ====== SCROLL-TRIGGERED GRADIENT TRANSITIONS ======
-        document.querySelectorAll('.section-transition').forEach(el => {
-            const orbObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('visible');
-                });
-            }, { threshold: 0.2 });
-            orbObserver.observe(el);
-        });
 
-        // ====== GSAP SCROLL-TRIGGERED GRADIENT PARALLAX ======
-        gsap.utils.toArray('.section-transition .gradient-orb').forEach((orb, i) => {
-            gsap.fromTo(orb,
-                { x: i % 2 === 0 ? -60 : 60, opacity: 0 },
+        // ====== GSAP SCROLL-TRIGGERED TRANSITION REVEAL ======
+        gsap.utils.toArray('.section-transition').forEach((el) => {
+            gsap.fromTo(el.querySelector('.waterfall-glow-1'),
+                { x: -80, opacity: 0 },
                 {
-                    x: i % 2 === 0 ? 40 : -40,
-                    opacity: 1,
-                    duration: 1.5,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: orb.parentElement,
-                        start: 'top 85%',
-                        end: 'bottom 20%',
-                        scrub: 1
-                    }
+                    x: 0, opacity: 1, duration: 1.5, ease: 'power2.out',
+                    scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 20%', scrub: 1 }
+                }
+            );
+            gsap.fromTo(el.querySelector('.waterfall-glow-2'),
+                { x: 80, opacity: 0 },
+                {
+                    x: 0, opacity: 1, duration: 1.5, ease: 'power2.out',
+                    scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 20%', scrub: 1 }
                 }
             );
         });
